@@ -19,26 +19,24 @@ class Array
   end
 end
 
-a, b, c = [4, 3, 2, 1], [], []
-tower = { 1 => a, 2 => b, 3 => c }
+
+tower = { 1 => [4, 3, 2, 1], 2 => [], 3 => [] }
 loop do
-  p a
-  p b
-  p c
-  p 'Which column to move from?'
+  tower.values.each { |stack| p stack }
+  p 'Move from:'
   initial_tower = tower[gets.chomp.to_i]
   if initial_tower.empty?
     p 'Tower is empty'
     next
   end
-  p 'What tower do you want to move it to?'
+  p 'Move to:'
   destination_tower = tower[gets.chomp.to_i]
   unless initial_tower.empty?
     if destination_tower.empty? || initial_tower.last < destination_tower.last
       destination_tower << initial_tower.pop
       p 'You win' && break if destination_tower == [4, 3, 2, 1]
     else
-      p 'not possible'
+      p 'Illegal move'
     end
   end
 end
