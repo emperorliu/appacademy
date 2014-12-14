@@ -1,5 +1,3 @@
-require 'pry'
-
 def multiply_by_two(arr)
   arr.map { |i| 2 * i }
 end
@@ -28,5 +26,3 @@ end
 def concatenate(arr)
   arr.inject('') { |a, e| a + e + ' ' }.strip
 end
-
-binding.pry
