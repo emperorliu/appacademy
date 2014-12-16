@@ -46,7 +46,7 @@ end
 def deep_dup(arr)
 
   unless arr.is_a? Array
-    arr
+    arr.dup
   else
     new_arr = []
     arr.each do |i|
@@ -127,15 +127,15 @@ end
 def make_change3(n, change)
   change_options = []
   return [] if change.empty?
-  new_change = change.sort.reverse
-  while new_change.any?
-    coin = new_change.first
+  change.sort.reverse
+  while change.any?
+    coin = change.first
     if n >= coin
-      change_options << [coin] + make_change1(n - coin, new_change)
+      change_options << [coin] + make_change1(n - coin, change)
     else
-      change_options << make_change1(n, new_change.drop(1))
+      change_options << make_change1(n, change.drop(1))
     end
-      new_change = new_change.drop(1)
+      change = change.drop(1)
   end
   change_options.sort_by(&:length)[0]
 end
