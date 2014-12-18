@@ -21,7 +21,7 @@ class Game
       begin
         puts "#{player.color}'s turn."
         board.render_board
-        sleep(0.1)
+        sleep(0.05)
         begin
           start, end_pos = player.play_turn(board)
         rescue StalemateError => check_error
