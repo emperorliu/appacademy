@@ -20,12 +20,13 @@ class Board
   end
 
   def render_board
-    row_col_color = :cyan
+    puts "\e[H\e[2J"
+    row_col_color = :blue
     puts ("     " + ("a".."h").to_a.join(" ")).colorize(row_col_color)
-    puts ("  \u250C" + "\u2500" * 18 + "\u2510").colorize(row_col_color)
+    puts ("  \u2554" + "\u2550" * 18 + "\u2557").colorize(row_col_color)
 
     grid.each_with_index do |row, i|
-      row_string = "#{i + 1} \u2502 ".colorize(row_col_color)
+      row_string = "#{i + 1} \u2551 ".colorize(row_col_color)
       row.each_with_index do |tile, j|
         if tile.nil?
           row_string << color_tile("  ", i, j)
@@ -34,19 +35,17 @@ class Board
           if tile.color == :black
             el = color_tile(tile.symbol.black + " ", x, y)
           else
-            el = color_tile(tile.symbol + " ", x, y)
+            el = color_tile(tile.symbol.light_white + " ", x, y)
           end
           row_string << el
         end
       end
 
-      puts row_string + " | #{i + 1}".colorize(row_col_color)
+      puts row_string + " \u2551 #{i + 1}".colorize(row_col_color)
     end
-    puts ("  \u2514" + "\u2500" * 18 + "\u2518").colorize(row_col_color)
+    puts ("  \u255A" + "\u2550" * 18 + "\u255D").colorize(row_col_color)
     puts ("    " + ("a".."h").to_a.join(" ")).colorize(row_col_color)
     puts
-
-    nil
   end
 
   def color_tile(str, x, y)
