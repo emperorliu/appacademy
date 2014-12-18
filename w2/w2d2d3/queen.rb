@@ -7,7 +7,7 @@ class Queen < SlidingPiece
 
   def initialize(board, pos, color)
     super(board, pos, color)
-    @symbol = ( "\u265B" )
+    @symbol = "\u265B"
     @value = 9
   end
 
