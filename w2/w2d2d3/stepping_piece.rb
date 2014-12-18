@@ -24,7 +24,4 @@ class SteppingPiece < Piece
     end
   end
 
-  def move_dirs
-  end
-
 end

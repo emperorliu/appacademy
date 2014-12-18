@@ -6,15 +6,17 @@ class King < SteppingPiece
   [0, 1], [1, 0], [-1, 0], [0, -1]]
 
   attr_accessor :pos
-  attr_reader :board, :color, :symbol
+  attr_reader :board, :color, :symbol, :value
 
   def initialize(board, pos, color)
     super(board, pos, color)
     @symbol = ( color == :black ? "\u2654" : "\u265A" )
+    @value = 9001
   end
+
+  private
 
   def move_dirs
     KING_MOVES
   end
-
 end

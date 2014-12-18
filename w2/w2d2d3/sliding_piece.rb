@@ -17,23 +17,33 @@ class SlidingPiece < Piece
     move_dirs.each do |dir|
       i, j = dir
       x2, y2 = [x + i, y + j]
-      until off_board?([x2, y2])
-        case check_board_at([x2, y2])
-        when :nil
-          total_moves << [x2, y2]
-          x2 += i
-          y2 += j
-        when :opponent
-          total_moves << [x2, y2]
-          break
-        when :ally
-          break
-        end
+      total_moves += rec_moves(x2, y2, i, j)
+    end
+    # if self.class == Rook
+    #   total_moves += castle
+    # end
+
+    total_moves
+  end
+
+  private
+
+  def rec_moves(x, y, i, j)
+    total_moves = []
+    until off_board?([x, y])
+      case check_board_at([x, y])
+      when :nil
+        total_moves << [x, y]
+        x += i
+        y += j
+      when :opponent
+        total_moves << [x, y]
+        break
+      when :ally
+        break
       end
     end
     total_moves
   end
 
-  def move_dirs
-  end
 end
