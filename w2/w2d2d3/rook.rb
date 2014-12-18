@@ -7,7 +7,7 @@ class Rook < SlidingPiece
 
   def initialize(board, pos, color)
     super(board, pos, color)
-    @symbol = ( color == :black ? "\u2656" : "\u265C" )
+    @symbol = ( "\u265C" )
     @value = 5
   end
 

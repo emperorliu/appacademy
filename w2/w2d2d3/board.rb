@@ -20,25 +20,30 @@ class Board
   end
 
   def render_board
-    puts ("  |  " + ("a".."h").to_a.join(" ") + " |").colorize(:red)
-    puts "--+------------------+--".colorize(:red)
+    row_col_color = :cyan
+    puts ("     " + ("a".."h").to_a.join(" ")).colorize(row_col_color)
+    puts ("  \u250C" + "\u2500" * 18 + "\u2510").colorize(row_col_color)
 
     grid.each_with_index do |row, i|
-      row_string = "#{i + 1} | ".colorize(:red)
+      row_string = "#{i + 1} \u2502 ".colorize(row_col_color)
       row.each_with_index do |tile, j|
         if tile.nil?
           row_string << color_tile("  ", i, j)
         else
           x, y = tile.pos
-
-          row_string << color_tile(tile.symbol + " ", x, y)
+          if tile.color == :black
+            el = color_tile(tile.symbol.black + " ", x, y)
+          else
+            el = color_tile(tile.symbol + " ", x, y)
+          end
+          row_string << el
         end
       end
 
-      puts row_string + " | #{i + 1}".colorize(:red)
+      puts row_string + " | #{i + 1}".colorize(row_col_color)
     end
-    puts "--+------------------+--".colorize(:red)
-    puts ("  |  " + ("a".."h").to_a.join(" ")).colorize(:red)
+    puts ("  \u2514" + "\u2500" * 18 + "\u2518").colorize(row_col_color)
+    puts ("    " + ("a".."h").to_a.join(" ")).colorize(row_col_color)
     puts
 
     nil
@@ -46,9 +51,9 @@ class Board
 
   def color_tile(str, x, y)
     if (x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)
-      str.colorize(:background => :light_black)
+      str.colorize(:background => :light_blue)
     else
-      str.colorize(:background => :black)
+      str.colorize(:background => :blue)
     end
   end
 

@@ -7,7 +7,7 @@ class Pawn < Piece
 
   def initialize(board, pos, color)
     super(board, pos, color)
-    @symbol = ( color == :black ? "\u2659" : "\u265F" )
+    @symbol = ( "\u265F" )
     @value = 1
   end
 

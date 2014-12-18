@@ -7,7 +7,7 @@ class Bishop < SlidingPiece
 
   def initialize(board, pos, color)
     super(board, pos, color)
-    @symbol = ( color == :black ? "\u2657" : "\u265D" )
+    @symbol = ( "\u265D" )
     @value = 3
   end
 

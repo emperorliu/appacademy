@@ -10,7 +10,7 @@ class Knight < SteppingPiece
 
   def initialize(board, pos, color)
     super(board, pos, color)
-    @symbol = ( color == :black ? "\u2658" : "\u265E" )
+    @symbol = ( "\u265E" )
     @value = 3
   end
 

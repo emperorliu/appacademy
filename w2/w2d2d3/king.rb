@@ -10,7 +10,7 @@ class King < SteppingPiece
 
   def initialize(board, pos, color)
     super(board, pos, color)
-    @symbol = ( color == :black ? "\u2654" : "\u265A" )
+    @symbol = ( "\u265A" )
     @value = 9001
   end
 
