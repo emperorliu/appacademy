@@ -171,11 +171,3 @@ class Board
   end
 
 end
-#
-# x = Board.new
-# x.move([1,5], [2,5])
-# x.move([6,4], [4,4])
-# x.move([1,6], [3,6])
-# x.move([7,3], [3,7])
-# x.render_board
-# p x.checkmate?(:black)

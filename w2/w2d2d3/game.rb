@@ -10,11 +10,6 @@ class Game
 
   def initialize(white, black)
     @board = Board.new
-    # board.move([6,3], [4,3], :white)
-    # board.move([1,2], [2,2], :black)
-    # board.move([0,3], [2,1], :black)
-    # board.move([2,1], [3,2], :black)
-    # board.move([1,4], [3,4], :black)
     @white_player = white
     @black_player = black
   end
