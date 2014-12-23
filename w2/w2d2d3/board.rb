@@ -14,7 +14,7 @@ class Board
   attr_reader :grid
 
   def initialize(empty = false)
-    @grid = Array.new(8) { Array.new(8)}
+    @grid = Array.new(8) { Array.new(8) }
     build_board unless empty
     @pieces_number = 32
   end

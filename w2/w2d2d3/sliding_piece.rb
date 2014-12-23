@@ -19,9 +19,6 @@ class SlidingPiece < Piece
       x2, y2 = [x + i, y + j]
       total_moves += rec_moves(x2, y2, i, j)
     end
-    # if self.class == Rook
-    #   total_moves += castle
-    # end
 
     total_moves
   end
