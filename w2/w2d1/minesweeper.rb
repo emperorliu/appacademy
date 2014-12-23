@@ -37,7 +37,7 @@ class Minesweeper
     x, y = pos
     node = board[x][y]
 
-    if node.value != "X" || node.mark !="F"
+    if node.value != "X" || node.flagged !="F"
       if node.value == 0
         reveal_neighbors(pos)
       end
@@ -49,7 +49,7 @@ class Minesweeper
     x, y = pos
     node = board[x][y]
     neighbors = node.avail_neighbors
-    neighbors.reject! { |i| i.value == "X" || i.mark == "F" || i.visible }
+    neighbors.reject! { |i| i.value == "X" || i.flagged == "F" || i.visible }
     if neighbors.empty? || neighbors.none? { |i| i.value == 0 }
       neighbors.each do |neighbor|
         neighbor.visible = true
@@ -152,7 +152,7 @@ class Minesweeper
         if node.visible
           row_string << "#{node.value}  "
         else
-          row_string << "#{node.mark}  "
+          row_string << "#{node.flagged}  "
         end
       end
       puts row_string
@@ -161,10 +161,10 @@ class Minesweeper
 
   def flag(pos)
     x, y = pos
-    if board[x][y].mark == "F"
-      board[x][y].mark = "_"
+    if board[x][y].flagged == "F"
+      board[x][y].flagged = "_"
     else
-      board[x][y].mark = "F" unless board[x][y].visible
+      board[x][y].flagged = "F" unless board[x][y].visible
     end
   end
 
@@ -173,11 +173,11 @@ end
 class Node
 
   attr_reader :position
-  attr_accessor :mark, :value, :visible
+  attr_accessor :flagged, :value, :visible
 
-  def initialize(position, game, value=0, mark="_", visible=false)
+  def initialize(position, game, value=0, flagged="_", visible=false)
     @game = game
-    @value, @position, @mark = value, position, mark
+    @value, @position, @flagged = value, position, flagged
     @visible = visible
   end
 
