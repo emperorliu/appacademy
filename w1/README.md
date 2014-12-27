@@ -10,4 +10,5 @@
 
 #### Hangman
 Two AIs play against one another.
+
 ![hangman](https://github.com/vveleva/appacademy/blob/master/images/hangman.png)
