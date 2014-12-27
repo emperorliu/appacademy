@@ -1,12 +1,15 @@
+require 'colorize'
+
 class Game
+
   attr_accessor :board, :p1, :p2, :marks
 
   def initialize(p1, p2)
     @board = Board.new
     @p1 = p1
     @p2 = p2
-    @marks = ['X', 'O']
-    board.render
+    @marks = ['x', 'o']
+    board.display
   end
 
   def play
@@ -19,11 +22,11 @@ class Game
           player_move = player.move
         end
         board.place_mark(player_move, marks[i])
-        board.render
+        board.display
         break if board.won?
       end
     end
-    if board.winner == 'X'
+    if board.winner == 'x'
       puts "#{p1.name} won!"
     else
       puts "#{p2.name} won!"
@@ -52,48 +55,13 @@ class ComputerPlayer
   end
 
   def move
-    # if board[1][1].nil?
-      # [1, 1]
-    # else
-      [rand(0..2), rand(0..2)]
-    # end
+    [rand(0..2), rand(0..2)]
   end
-
-  # def move(game, mark)
-  #   winner_move(game, mark) || random_move(game)
-  # end
-  #
-  # private
-  # def winner_move(game, mark)
-  #   (0..2).each do |x|
-  #     (0..2).each do |y|
-  #       board = game.board.dup
-  #       pos = [x, y]
-  #
-  #       next unless board.empty?(pos)
-  #       board[pos] = mark
-  #
-  #       return pos if board.winner == mark
-  #     end
-  #   end
-  #
-  #   # no winning move
-  #   nil
-  # end
-  #
-  # def random_move(game)
-  #   board = game.board
-  #   while true
-  #     range = (0..2).to_a
-  #     pos = [range.sample, range.sample]
-  #
-  #     return pos if board.empty?(pos)
-  #   end
-  # end
 end
 
 
 class Board
+
   attr_reader :board, :mark
   attr_accessor :winner
 
@@ -103,35 +71,58 @@ class Board
   end
 
   def render
-    puts board.map { |row| row.join("\t") }.join("\n")
+    board.map do |row|
+      "\u2551 " + row.map do |i|
+        i.nil? ? " " : i.colorize(:yellow)
+      end.join(" \u2551 ") + " \u2551"
+    end.join("\n\u2560" + "\u2550" * 3 + \
+               "\u256C" + "\u2550" * 3 + \
+               "\u256C" + "\u2550" * 3 + "\u2563\n")
+  end
+
+  def display
+    puts "\e[H\e[2J"
+    puts "\u2554" + "\u2550" * 3 + \
+         "\u2566" + "\u2550" * 3 + \
+         "\u2566" + "\u2550" * 3 + "\u2557"
+    puts render
+    puts "\u255A" + "\u2550" * 3 + \
+         "\u2569" + "\u2550" * 3 + \
+         "\u2569" + "\u2550" * 3 + "\u255D"
   end
 
   def won?
     mark = ""
     board.each_with_index do |row, i|
-      if row.all? { |x| x == 'X' }
+      if row.all? { |x| x == 'x' }
         self.winner = row[0]
         return true
-      elsif row.all? { |x| x == 'O' }
+      elsif row.all? { |x| x == 'o' }
         self.winner = row[0]
         return true
       end
     end
     board.transpose.each_with_index do |row, i|
-      if row.all? { |x| x == 'X' }
+      if row.all? { |x| x == 'x' }
         self.winner = row[0]
+
         return true
-      elsif row.all? { |x| x == 'O' }
+      elsif row.all? { |x| x == 'o' }
         self.winner = row[0]
+
         return true
       end
     end
-    if board[0][0] && board[0][0] == board[1][1] && board[1][1] == board[2][2]
+    if board[0][0] && board[0][0] == board[1][1] &&
+                      board[1][1] == board[2][2]
       self.winner = board[0][0]
-      return true
-    elsif board[2][0] && board[2][0] == board[1][1] && board[1][1] == board[0][2]
+
+      true
+    elsif board[2][0] && board[2][0] == board[1][1] &&
+                         board[1][1] == board[0][2]
       self.winner = board[2][0]
-      return true
+
+      true
     else
       false
     end
