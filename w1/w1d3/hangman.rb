@@ -137,7 +137,5 @@ end
 player1 = HumanPlayer.new("VA")
 player2 = ComputerPlayer.new
 player3 = ComputerPlayer.new
-game = Hangman.new(player1, player3)
+game = Hangman.new(player2, player3)
 game.play
-# game = Hangman.new(player2, player1)
-# game.play
