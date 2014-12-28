@@ -10,14 +10,14 @@ class Game
 
   def initialize(white, black)
     @board = Board.new
-    board[[5, 0]].move(:upright)
-    board[[2, 3]].move(:downleft)
-    board[[6, 1]].move(:upleft)
-    board[[1, 2]].move(:downright)
-    board[[5, 6]].move(:upright)
-    board[[2, 3]].move(:downright)
-    board[[5, 4]].move(:upright)
-    board[[0, 1]].move(:downright)
+    # board[[5, 0]].move(:upright)
+    # board[[2, 3]].move(:downleft)
+    # board[[6, 1]].move(:upleft)
+    # board[[1, 2]].move(:downright)
+    # board[[5, 6]].move(:upright)
+    # board[[2, 3]].move(:downright)
+    # board[[5, 4]].move(:upright)
+    # board[[0, 1]].move(:downright)
     board.render_board
     @white_player = white
     @black_player = black
