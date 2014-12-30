@@ -75,12 +75,16 @@ class ShortenedUrl < ActiveRecord::Base
     ShortenedUrl.find_by(short_url: short_url).long_url
   end
 
+  def num_clicks
+    visits.count
+  end
+
   def num_uniques
-    self.visitors.count
+    visitors.count
   end
 
   def num_recent_uniques
-    self.visitors.where("visits.created_at >= ? ", 3.minutes.ago).count
+    visitors.where("visits.created_at >= ? ", 10.minutes.ago).count
   end
 
   def self.record_tagging!(tag, shortened_url)

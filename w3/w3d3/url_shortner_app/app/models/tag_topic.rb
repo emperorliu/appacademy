@@ -22,4 +22,8 @@ class TagTopic < ActiveRecord::Base
     through: :taggings,
     source: :shortened_url
   )
+
+  def self.tags
+    TagTopic.pluck(:name)
+  end
 end
