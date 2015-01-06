@@ -28,7 +28,7 @@ Two AIs play against one another.
 ![hangman](https://github.com/vveleva/appacademy/blob/master/images/hangman.png)
 
 
-### Word Chains ( [my code](https://github.com/vveleva/appacademy/blob/master/w1/w1d4/word_chains.rb) )
+### Word Chains ( [my code](https://github.com/vveleva/algorithms/blob/master/word_ladder.rb) )
 Given two words of equal length as command-line arguments, the program builds a chain of words connecting the first to the second. Each word in the chain is in the dictionary and every step along the chain changes exactly one letter from the previous word.
 
 ## Week 2
