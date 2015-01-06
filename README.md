@@ -34,8 +34,9 @@ Given two words of equal length as command-line arguments, the program builds a 
 ## Week 2
 
 ### Chess ( [my code](https://github.com/vveleva/appacademy/tree/master/w2/w2d2d3) )
-![chess](https://github.com/vveleva/appacademy/blob/master/images/chess.png)
 There is a humand and an ai player. I also implemented en passant.
+
+![chess](https://github.com/vveleva/appacademy/blob/master/images/chess.png)
 
 
 ### Checkers ( [my code](https://github.com/vveleva/appacademy/tree/master/w2/w2d4) )
