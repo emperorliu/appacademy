@@ -42,7 +42,6 @@ There is a human and an ai player. I also implemented en passant.
 
 
 ### Checkers ( [my code](https://github.com/vveleva/appacademy/tree/master/w2/w2d4) )
-Solo day
 
 ![checkers](https://github.com/vveleva/appacademy/blob/master/images/checkers.png)
 
