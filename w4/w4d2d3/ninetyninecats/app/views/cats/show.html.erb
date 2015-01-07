@@ -1,0 +1,24 @@
+<div class="container-fluid">
+<h1> <%= @cat.name %> the cat.</h1>
+
+<table>
+  <th>Attribute</th><th>Value</th>
+  <% @cat.attributes.each do |attr, value| %>
+  <tr>
+    <td><%= "#{attr.split("_").map(&:capitalize).join(" ")}:"%></td>
+    <td><%= "#{value}" %></td>
+  </tr>
+  <% end %>
+</table>
+<br>
+<%= link_to "Edit", edit_cat_url(@cat) %>
+<%= link_to "Enslave This Cat",
+    new_cat_cat_rental_request_url(@cat) %>
+
+<% @cat.cat_rental_requests.order(:start_date).each do |request| %>
+  <%= render partial: "cat_rental_requests/request",
+             locals: {
+               cat_rental_request: request
+             } %>
+<% end %>
+</div>

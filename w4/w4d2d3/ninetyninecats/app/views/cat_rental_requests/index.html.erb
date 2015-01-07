@@ -1,0 +1,9 @@
+<h1><%= @cat.name %> Slavery Requests</h1>
+
+<ul>
+  <% @requests.each do |request| %>
+  <li>Status: <%= request.status %><br>
+      Start Date: <%= request.start_date %><br>
+      End Date: <%= request.end_date %></li>
+  <% end %>
+</ul>
