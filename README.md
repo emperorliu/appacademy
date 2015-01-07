@@ -23,7 +23,7 @@ A program that finds a route between two points in a maze.
 
 
 ### Hangman ( [my code](https://github.com/vveleva/appacademy/blob/master/w1/w1d3/hangman.rb) )
-Two AIs play against one another.
+This is the classic hangman game, where one player thinks of a word and the other tries to guess it by suggesting letters. The program has two types of players: human player and AI player. Since human's are boring, here are two AIs battling it out:
 
 ![hangman](https://github.com/vveleva/appacademy/blob/master/images/hangman.png)
 
