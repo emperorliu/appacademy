@@ -13,10 +13,10 @@
 #
 
 class Cat < ActiveRecord::Base
-  validates :name, presence: true
-  validates :color, presence: true
+  validates :name,       presence: true
+  validates :color,      presence: true
   validates :birth_date, presence: true
-  validates :sex, presence: true
+  validates :sex,        presence: true
 
   has_many :cat_rental_requests, :dependent => :destroy
 

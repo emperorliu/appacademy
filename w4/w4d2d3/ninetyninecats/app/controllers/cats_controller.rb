@@ -2,24 +2,28 @@ class CatsController < ApplicationController
 
   def index
     @cats = Cat.all
+
     render :index
   end
 
   def show
     @cat = Cat.includes(:cat_rental_requests).find(params[:id])
     @cat_rental_requests = @cat.cat_rental_requests
+
     render :show
   end
 
   def new
     @cat = Cat.new
     @colors = Cat::COLORS
+
     render :new
   end
 
   def edit
     @cat = Cat.find(params[:id])
     @colors = Cat::COLORS
+
     render :edit
   end
 
