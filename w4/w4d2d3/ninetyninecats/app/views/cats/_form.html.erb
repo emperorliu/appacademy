@@ -48,4 +48,4 @@
   <input type="textarea" name="cat[description]" value="<%= @cat.description %>">
   <br><br>
 
-  <input type="submit" value="Create cat">
+  <input type="submit" value="<%=@cat.persisted? ? "Edit" : "Create" %>">

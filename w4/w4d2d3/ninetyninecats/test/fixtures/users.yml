@@ -1,16 +1,13 @@
 # == Schema Information
 #
-# Table name: cats
+# Table name: users
 #
-#  id          :integer          not null, primary key
-#  birth_date  :date             not null
-#  color       :string           not null
-#  name        :string           not null
-#  sex         :string           not null
-#  description :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :integer
+#  id              :integer          not null, primary key
+#  user_name       :string           not null
+#  password_digest :string
+#  session_token   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
