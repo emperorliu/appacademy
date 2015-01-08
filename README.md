@@ -19,6 +19,8 @@ A program that finds a route between two points in a maze.
 
 
 ### Tic Tac Toe  ( [my code](https://github.com/vveleva/appacademy/blob/master/w1/w1d2/tic_tac_toe.rb) )
+This is my version of the timeless classic 2-player pencil & paper game.
+
 ![tic tac toe](https://github.com/vveleva/appacademy/blob/master/images/tic_tac_toe.png)
 
 
