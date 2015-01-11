@@ -1,6 +1,6 @@
 ## Prep Work for App Academy
 
-### Twitter Clone ( [my code](https://github.com/vveleva/sample_app) )
+### Twitter Clone ( [my code](https://github.com/vveleva/sample_app) ) ( [live demo](fvbkireh.herokuapp.com) )
 This is the sample application for the
 [*Ruby on Rails Tutorial:
 Learn Web Development with Rails*](http://www.railstutorial.org/)
