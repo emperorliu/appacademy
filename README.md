@@ -98,8 +98,10 @@ Contacts API is an application storing your email contacts.  Users can send requ
 This project is a clone the dress rental website 99dresses. In other words: it is an airbnb for renting cats.
 
 
-### Music App ( [my code](https://github.com/vveleva/MusicApp) )
-A rdio-like app for browsing music. You can preview the app at [musicapp.vveleva.com](http://musicapp.vveleva.com/).
+### Music App ( [my code](https://github.com/vveleva/MusicApp) ) ( [live demo](http://musicapp.vveleva.com/) )
 
-### Reddit App ( [my code](https://github.com/vveleva/RedditApp) )
-This is a Reddit clone app.  You can preview the app at [redditapp.vveleva.com](http://redditapp.vveleva.com/).
+A simplified version of a rdio-like app for browsing music. It is an inventory system for record labels. This app lets users track their Bands, Albums and Tracks.
+
+### Reddit App ( [my code](https://github.com/vveleva/RedditApp) ) ( [live demo](http://redditapp.vveleva.com/) )
+
+If you don't know what the Reddit is, then you are probably someone with a life. [Here are some cats.](http://www.reddit.com/r/cats)
