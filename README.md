@@ -95,7 +95,7 @@ Contacts API is an application storing your email contacts.  Users can send requ
 
 
 ### 99 Cats ( [my code](https://github.com/vveleva/appacademy/tree/master/w4/w4d2d3/ninetyninecats) )
-This project is a clone the dress rental website 99dresses. In other words: it is an airbnb for renting cats.
+This project is a clone of the dress rental website 99dresses. In other words: it is an airbnb for renting cats.
 
 
 ### Music App ( [my code](https://github.com/vveleva/MusicApp) ) ( [live demo](http://musicapp.vveleva.com/) )
