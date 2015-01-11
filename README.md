@@ -99,7 +99,7 @@ This project is a clone the dress rental website 99dresses. In other words: it i
 
 
 ### Music App ( [my code](https://github.com/vveleva/MusicApp) ) ( [live demo](http://musicapp.vveleva.com/) )
-**username:** vveleva                                                                                  
+**email:** user@example.com                                                                                 
 **password:** awesome
 
 A simplified version of a rdio-like app for browsing music. It is an inventory system for record labels. This app lets users track their Bands, Albums and Tracks.
