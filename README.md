@@ -60,7 +60,7 @@ URL Shortner a tool that takes an input URL and will shorten it for the user. Su
 - associations and validations for all models
 
 
-### ActiveRecord ( [my code](https://github.com/vveleva/appacademy/tree/master/w3/w3d5) )
+### ActiveRecord Lite ( [my code](https://github.com/vveleva/appacademy/tree/master/w3/w3d5) )
 I built my own lite version of ActiveRecord.
 - implemented `my_attr_accessor` using
   - `define_method`
@@ -99,7 +99,7 @@ This project is a clone of the dress rental website 99dresses. In other words: i
 
 
 ### Music App ( [my code](https://github.com/vveleva/MusicApp) ) ( [live demo](http://musicapp.vveleva.com/) )
-**email:** user@example.com                                                                                 
+**email:** user@example.com
 **password:** awesome
 
 A simplified version of a rdio-like app for browsing music. It is an inventory system for record labels. This app lets users track their Bands, Albums and Tracks.
@@ -107,3 +107,16 @@ A simplified version of a rdio-like app for browsing music. It is an inventory s
 ### Reddit App ( [my code](https://github.com/vveleva/RedditApp) ) ( [live demo](http://redditapp.vveleva.com/) )
 
 If you don't know what the Reddit is, then you are probably someone with a life. [Here are some cats.](http://www.reddit.com/r/cats)
+
+### Goal Setter App ( [my code](https://github.com/vveleva/GoalSetterApp) )
+
+This project's main focus was on improving my skills in:
+- writing integration tests using `Capybara` and `RSpec`
+- testing behavior rather than implementation
+- learning how to develop one feature at a time
+- using concerns and polymorphic associations to dry up code
+
+### Rails Lite ( [my code](https://github.com/vveleva/RedditApp) )
+
+I built my own lite version of Rails.
+- used `WEBrick` to implement my own server
