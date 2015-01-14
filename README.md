@@ -119,4 +119,7 @@ This project's main focus was on improving my skills in:
 ### Rails Lite ( [my code](https://github.com/vveleva/RedditApp) )
 
 I built my own lite version of Rails.
-- used `WEBrick` to implement my own server
+- used `WEBrick` to set my own server
+- parse request
+- route request to the appropriate controller
+- send response back to the client
