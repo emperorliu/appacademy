@@ -1,0 +1,46 @@
+/* PHASE 1: Header */
+
+.header ul {
+  float: right;
+}
+
+.header-logo {
+  float: left;
+  font-weight: 700;
+  border-right: 1px solid #ccc;
+}
+
+.header-list li {
+  float: left;
+  height: 100%;
+}
+
+.header-nav {
+  margin: 0 auto;
+  width: 900px;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 20px;
+  display: block;
+  margin: 0;
+  border-left: 1px solid #ccc;
+}
+
+.header-nav a:hover {
+  background-color: black;
+}
+
+.header-nav ul.header-list li:last-child {
+  border-right: 1px solid #ccc;
+}
+
+.header {
+  margin: 0;
+  background-color: red;
+  color: white;
+  border-bottom: 1px solid #ccc;
+  z-index: 1;
+}
