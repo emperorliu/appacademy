@@ -108,6 +108,8 @@ A simplified version of a rdio-like app for browsing music. It is an inventory s
 
 If you don't know what the Reddit is, then you are probably someone with a life. [Here are some cats.](http://www.reddit.com/r/cats)
 
+## Week 5
+
 ### Goal Setter App ( [my code](https://github.com/vveleva/GoalSetterApp) )
 
 This project's main focus was on improving my skills in:
@@ -123,3 +125,7 @@ I built my own lite version of Rails.
 - parse request
 - route request to the appropriate controller
 - send response back to the client
+
+## Week 6
+
+### Asteroids
