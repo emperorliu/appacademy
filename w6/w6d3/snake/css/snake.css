@@ -1,0 +1,33 @@
+.main {
+  width: 500px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-top: 50px;
+  /*position: relative;*/
+  display: block;
+}
+
+.main h1 {
+  font-size: 50px;
+}
+
+div.sq {
+  float: left;
+  background: #ccc;
+  border: 1px solid #fff;
+  width: 60px;
+  height: 60px;
+}
+
+.game-over {
+  display: block;
+  position: relative;
+  padding: 280px;
+  margin-left: 171px;
+  font-size: 25px;
+}
+
+.snake {
+  background-color: green;
+  height: 100%;
+}

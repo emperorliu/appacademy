@@ -1,0 +1,45 @@
+.main {
+  width: 300px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-top: 50px;
+  /*position: relative;*/
+  display: block;
+}
+
+.main h1 {
+  font-size: 50px;
+}
+
+div.sq {
+  float: left;
+  background: #ccc;
+  border: 3px solid #fff;
+  width: 80px;
+  height: 80px;
+}
+
+div.sq:hover {
+  background-color: orange;
+}
+
+.o-mark { color: red; }
+
+.x-mark { color: black; }
+
+.o-mark, .x-mark {
+  font-family: helvetica;
+  font-size: 80px;
+  display: block;
+  position: relative;
+  margin-top: -15px;
+  margin-left: 22px;
+}
+
+.game-over {
+  display: block;
+  position: relative;
+  padding: 280px;
+  margin-left: 171px;
+  font-size: 25px;
+}

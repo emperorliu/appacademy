@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Snake</title>
+  <link rel="stylesheet" type="text/css" href="../css/snake.css">
+</head>
+<body>
+<script src="../js/jquery-2.1.1.js"></script>
+<script src="../js/keymaster.js"></script>
+<!-- Whackjobs at GithubPages don't understand symlinks... -->
+<script src="../snake.js"></script>
+<script src="../js/snake-view.js"></script>
+<script charset="utf-8">
+$(function(){
+  var game = new Game();
+  var snake = new S.View(game, $('.main'));
+  snake.setupBoard();
+  snake.render();
+
+})
+</script>
+
+<div class="main"><h1>Snake</h1></div>
+<script>
+// Write your code here.
+</script>
+</body>
+</html>
