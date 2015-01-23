@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>A page for you!</title>
+
+    <script type="application/javascript"
+             src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+  </head>
+
+  <body>
+    <input type="text" id="text-field" value="">
+    <button id="submit-button">Submit me!</button>
+
+    <script type="application/javascript">
+      // uses jQuery to find HTML elements by id.
+      var $submitButtonEl = $('#submit-button');
+      var $textFieldEl = $('#text-field');
+
+      // installs a "click handler" on the submit button; the callback
+      // gets run when the button is clicked.
+      $submitButtonEl.on('click', function () {
+        // grab input text from the text field.
+        var input = $textFieldEl.val();
+        // reset text field to blank
+        $textFieldEl.val("")
+
+        // Build a new `p` tag with the input content and append it to
+        // the body.
+        var $parEl = $("<p></p>");
+        $parEl.text(input);
+        $("body").append($parEl);
+      });
+    </script>
+  </body>
+</html>
