@@ -133,6 +133,8 @@ I built my own lite version of Rails.
 
 ### Pokedex ( [my code](https://github.com/vveleva/appacademy/tree/master/w7/w7d2) )
 
+### TrelloClone ( [my code](https://github.com/vveleva/TrelloClone) )
+
 ### Asteroids
 
 ## Final Project ( [my code](https://github.com/vveleva/WaiterUp) )
