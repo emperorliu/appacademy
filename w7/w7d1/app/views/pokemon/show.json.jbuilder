@@ -1,6 +1,4 @@
-# json.pokemon do
-  json.partial! 'pokemon/pokemon', pokemon: @pokemon
-# end
+json.partial! 'pokemon/pokemon', pokemon: @pokemon
 
 unless @pokemon.toys.empty?
   json.toys @pokemon.toys do |toy|
