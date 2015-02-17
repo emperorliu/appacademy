@@ -128,6 +128,11 @@ I built my own lite version of Rails.
 
 ## Week 6
 
+
+## Week 7
+
+### Pokedex ( [my code](https://github.com/vveleva/appacademy/tree/master/w7/w7d2) )
+
 ### Asteroids
 
 ## Final Project ( [my code](https://github.com/vveleva/WaiterUp) )
