@@ -129,3 +129,10 @@ I built my own lite version of Rails.
 ## Week 6
 
 ### Asteroids
+
+## Final Project ( [my code](https://github.com/vveleva/WaiterUp) )
+
+[waiterup.com](waiterup.com)
+
+In short: Yelp for menus.
+There are 2 type of users: restaurant managers and customers. Restaurant managers upload their menu to WaiterUp. If a customer walks into that restaurant, he/she can pull up the app on their phone, order from the menu, and then also pay through the app without having to leave tip. The idea is to eliminate waiters.
