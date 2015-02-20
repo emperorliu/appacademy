@@ -2,7 +2,7 @@ class PolyTreeNode
   attr_accessor :value, :parent
   attr_reader :children
 
-  def initialize(value)
+  def initialize(value = nil)
     @value = value
     @parent = nil
     @children = []
@@ -11,6 +11,7 @@ class PolyTreeNode
   def parent=(node)
     parent.children.delete(self) unless parent.nil?
     @parent = node
+    
     unless parent.nil? or self.parent.children.include?(self)
       node.children << self
     end
@@ -21,7 +22,7 @@ class PolyTreeNode
   end
 
   def remove_child(child)
-    raise "Bad parent=!" unless child.parent == self
+    raise "Bad parent!" unless child.parent == self
     child.parent = nil
   end
 
@@ -31,23 +32,20 @@ class PolyTreeNode
       node = child.dfs(target_value)
       return node if node
     end
+
     nil
   end
 
   def bfs(target_value)
-    queue = []
-    queue << self
+    queue = [self]
     until queue.empty?
       node = queue.shift
-      if node.value == target_value
-        return node
-      else
-        queue += node.children
-      end
+      return node if node.value == target_value
+      queue += node.children
     end
+
     nil
   end
-
 end
 
 
