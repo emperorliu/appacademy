@@ -118,8 +118,8 @@ class Board
 
   def dup
     new_board = Board.new(empty = true)
-    grid.flatten.compact.each do |el|
-      new_board[el.pos] = el.class.new(new_board, el.pos, el.color)
+    grid.flatten.compact.each do |piece|
+      new_board[piece.pos] = piece.class.new(new_board, piece.pos, piece.color)
     end
 
     new_board
