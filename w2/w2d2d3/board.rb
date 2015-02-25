@@ -21,6 +21,7 @@ class Board
   end
 
   def render_board
+    system("clear")
     row_col_color = :blue
     puts ("     " + ("a".."h").to_a.join(" ")).colorize(row_col_color)
     puts ("  \u2554" + "\u2550" * 18 + "\u2557").colorize(row_col_color)
