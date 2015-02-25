@@ -1,5 +1,6 @@
 require_relative 'sliding_piece.rb'
 
+
 class Rook < SlidingPiece
 
   attr_accessor :pos
@@ -13,7 +14,7 @@ class Rook < SlidingPiece
 
   private
 
-  def move_dirs
-    ORTHOGONALS
-  end
+    def move_dirs
+      ORTHOGONALS
+    end
 end

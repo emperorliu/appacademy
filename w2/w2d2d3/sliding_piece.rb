@@ -1,5 +1,6 @@
 require_relative 'piece.rb'
 
+
 class SlidingPiece < Piece
   DIAGONALS = [[1, 1], [1, -1], [-1, 1], [-1, -1]]
   ORTHOGONALS = [[0, 1], [1, 0], [-1, 0], [0, -1]]
@@ -27,6 +28,7 @@ class SlidingPiece < Piece
 
   def rec_moves(x, y, i, j)
     total_moves = []
+
     until off_board?([x, y])
       case check_board_at([x, y])
       when :nil
@@ -40,6 +42,7 @@ class SlidingPiece < Piece
         break
       end
     end
+
     total_moves
   end
 

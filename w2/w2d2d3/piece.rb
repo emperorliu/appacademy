@@ -18,8 +18,7 @@ class Piece
   end
 
   def inspect
-    {:pos => pos,
-      :color => color}.inspect
+    {:pos => pos, :color => color}.inspect
   end
 
   def check_board_at(pos)
@@ -37,6 +36,8 @@ class Piece
 
   def off_board?(pos)
     x, y = pos
+    # another way to write out the four conditions
+    # [x, y].min < 0 || [x, y].max > 7
     x < 0 || x > 7 || y < 0 || y > 7
   end
 

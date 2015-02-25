@@ -1,9 +1,10 @@
 require_relative 'stepping_piece.rb'
 
+
 class Knight < SteppingPiece
 
   KNIGHT_MOVES = [[-2, -1], [-2,  1], [-1, -2], [-1,  2],
-  [ 1, -2], [ 1,  2], [ 2, -1], [ 2,  1]]
+                  [ 1, -2], [ 1,  2], [ 2, -1], [ 2,  1]]
 
   attr_accessor :pos
   attr_reader :board, :color, :symbol, :value
@@ -16,7 +17,7 @@ class Knight < SteppingPiece
 
   private
 
-  def move_dirs
-    KNIGHT_MOVES
-  end
+    def move_dirs
+      KNIGHT_MOVES
+    end
 end

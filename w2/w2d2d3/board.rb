@@ -8,6 +8,7 @@ require_relative 'no_move_error.rb'
 
 require 'colorize'
 
+
 class Board
 
   attr_accessor :pieces_number
@@ -20,7 +21,6 @@ class Board
   end
 
   def render_board
-    puts "\e[H\e[2J"
     row_col_color = :blue
     puts ("     " + ("a".."h").to_a.join(" ")).colorize(row_col_color)
     puts ("  \u2554" + "\u2550" * 18 + "\u2557").colorize(row_col_color)
@@ -101,6 +101,7 @@ class Board
       return false unless piece.valid_moves.empty?
     end
     puts "Game over! You win, #{color}!"
+
     true
   end
 
@@ -129,45 +130,45 @@ class Board
 
   private
 
-  def build_board
-    grid[0][0] = Rook.new(self, [0, 0], :white)
-    grid[0][1] = Knight.new(self, [0, 1], :white)
-    grid[0][2] = Bishop.new(self, [0, 2], :white)
-    grid[0][3] = Queen.new(self, [0, 3], :white)
-    grid[0][4] = King.new(self, [0, 4], :white)
-    grid[0][5] = Bishop.new(self, [0, 5], :white)
-    grid[0][6] = Knight.new(self, [0, 6], :white)
-    grid[0][7] = Rook.new(self, [0, 7], :white)
+    def build_board
+      grid[0][0] = Rook.new(self,   [0, 0], :white)
+      grid[0][1] = Knight.new(self, [0, 1], :white)
+      grid[0][2] = Bishop.new(self, [0, 2], :white)
+      grid[0][3] = Queen.new(self,  [0, 3], :white)
+      grid[0][4] = King.new(self,   [0, 4], :white)
+      grid[0][5] = Bishop.new(self, [0, 5], :white)
+      grid[0][6] = Knight.new(self, [0, 6], :white)
+      grid[0][7] = Rook.new(self,   [0, 7], :white)
 
-    grid[7][0] = Rook.new(self, [7, 0], :black)
-    grid[7][1] = Knight.new(self, [7, 1], :black)
-    grid[7][2] = Bishop.new(self, [7, 2], :black)
-    grid[7][3] = Queen.new(self, [7, 3], :black)
-    grid[7][4] = King.new(self, [7, 4], :black)
-    grid[7][5] = Bishop.new(self, [7, 5], :black)
-    grid[7][6] = Knight.new(self, [7, 6], :black)
-    grid[7][7] = Rook.new(self, [7, 7], :black)
+      grid[7][0] = Rook.new(self,   [7, 0], :black)
+      grid[7][1] = Knight.new(self, [7, 1], :black)
+      grid[7][2] = Bishop.new(self, [7, 2], :black)
+      grid[7][3] = Queen.new(self,  [7, 3], :black)
+      grid[7][4] = King.new(self,   [7, 4], :black)
+      grid[7][5] = Bishop.new(self, [7, 5], :black)
+      grid[7][6] = Knight.new(self, [7, 6], :black)
+      grid[7][7] = Rook.new(self,   [7, 7], :black)
 
-    grid[1].each_index do |i|
-      grid[1][i] = Pawn.new(self, [1, i], :white)
-    end
+      grid[1].each_index do |i|
+        grid[1][i] = Pawn.new(self, [1, i], :white)
+      end
 
-    grid[6].each_index do |i|
-      grid[6][i] = Pawn.new(self, [6, i], :black)
-    end
-  end
-
-  def other_color(color)
-    color == :white ? :black : :white
-  end
-
-  def pawn_to_queen(color)
-    pawns = find_piece(color, Pawn)
-    pawns.each do |pawn|
-      if pawn.pos[0] == 0 || pawn.pos[0] == 7
-        self[pawn.pos] = Queen.new(self, pawn.pos, color)
+      grid[6].each_index do |i|
+        grid[6][i] = Pawn.new(self, [6, i], :black)
       end
     end
-  end
+
+    def other_color(color)
+      color == :white ? :black : :white
+    end
+
+    def pawn_to_queen(color)
+      pawns = find_piece(color, Pawn)
+      pawns.each do |pawn|
+        if pawn.pos[0] == 0 || pawn.pos[0] == 7
+          self[pawn.pos] = Queen.new(self, pawn.pos, color)
+        end
+      end
+    end
 
 end

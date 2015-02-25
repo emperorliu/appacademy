@@ -4,6 +4,7 @@ require_relative 'human_player.rb'
 require_relative 'ai_player.rb'
 require_relative 'stalemate_error.rb'
 
+
 class Game
 
   attr_reader :board, :white_player, :black_player
@@ -17,6 +18,7 @@ class Game
   def play
     player = white_player
     turns = 0
+
     until board.checkmate?(player.color)
       begin
         puts "#{player.color}'s turn."
@@ -34,8 +36,10 @@ class Game
         p e.message
         retry
       end
+
       player = flip_turns(player)
       turns += 1
+
       if turns % 25 == 0
         if board.grid.flatten.compact == board.pieces_number
           puts "It's a draw!"
@@ -45,13 +49,14 @@ class Game
         end
       end
     end
+
     board.render_board
   end
 
   private
 
-  def flip_turns(player)
-    player == white_player ? black_player : white_player
-  end
+    def flip_turns(player)
+      player == white_player ? black_player : white_player
+    end
 
 end

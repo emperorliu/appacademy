@@ -1,5 +1,6 @@
 require_relative 'sliding_piece.rb'
 
+
 class Queen < SlidingPiece
 
   attr_accessor :pos

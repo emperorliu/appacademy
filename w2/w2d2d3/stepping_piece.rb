@@ -1,5 +1,6 @@
 require_relative 'piece.rb'
 
+
 class SteppingPiece < Piece
 
   KING_MOVES = [[1, 1], [1, -1], [-1, 1], [-1, -1],

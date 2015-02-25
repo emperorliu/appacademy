@@ -1,5 +1,6 @@
 require_relative 'sliding_piece.rb'
 
+
 class Bishop < SlidingPiece
 
   attr_accessor :pos
@@ -13,7 +14,8 @@ class Bishop < SlidingPiece
 
   private
 
-  def move_dirs
-    DIAGONALS
-  end
+    def move_dirs
+      DIAGONALS
+    end
+
 end
