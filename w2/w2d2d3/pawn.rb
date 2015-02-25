@@ -12,18 +12,20 @@ class Pawn < Piece
   end
 
   def moves
-    dx = ( color == :black ? 1 : -1 )
+    dx = ( color == :black ? -1 : 1 )
     x, y = pos
     forward_moves = [[x + dx, y]]
-    if (x == 1 && color == :black) || (x == 6 && color == :white)
+
+    if (x == 6 && color == :black) || (x == 1 && color == :white)
       forward_moves << [x + dx * 2, y]
     end
+
     forward_moves.select! { |move| check_board_at(move) == :nil }
+
     diagonal_moves = [[x + dx, y - 1], [x + dx, y + 1]].select do |move|
       check_board_at(move) == :opponent
     end
 
     (forward_moves + diagonal_moves).reject { |move| off_board?(move) }
   end
-
 end
