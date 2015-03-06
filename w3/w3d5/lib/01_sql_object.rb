@@ -14,6 +14,7 @@ class SQLObject
         #{self.table_name}
     SQL
     @columns = columns.first.map(&:to_sym)
+
     @columns
   end
 
@@ -62,12 +63,12 @@ class SQLObject
 
   def initialize(params = {})
     unless params.empty?
-      params.each do |name, value|
-        name = name.to_sym
-        unless self.class.columns.include?(name)
-          raise "unknown attribute '#{name}'"
+      params.each do |attr_name, value|
+        attr_name = attr_name.to_sym
+        unless self.class.columns.include?(attr_name)
+          raise "unknown attribute '#{ attr_name }'"
         end
-        self.attributes[name] = value
+        self.attributes[attr_name] = value
       end
     end
   end
@@ -77,15 +78,15 @@ class SQLObject
   end
 
   def attribute_values
-    attributes.values
+    self.class.columns.map { |attr| self.send(attr) }
   end
 
   def insert
-    names = self.class.columns - [:id]
-    col_names = names.join(", ")
-    question_marks = (["?"] * names.count).join(", ")
+    columns = self.class.columns - [:id]
+    col_names = columns.join(", ")
+    question_marks = (["?"] * columns.count).join(", ")
 
-    DBConnection.execute(<<-SQL, *attribute_values)
+    DBConnection.execute(<<-SQL, *attribute_values.drop(1))
       INSERT INTO
         #{self.class.table_name} (#{col_names})
       VALUES
@@ -96,7 +97,7 @@ class SQLObject
   end
 
   def update
-    set_line = self.class.columns.map { |name| "#{name} = ?" }.join(", ")
+    set_line = self.class.columns.map { |name| "#{ name } = ?" }.join(", ")
 
     DBConnection.execute(<<-SQL, *attribute_values, self.id)
       UPDATE
