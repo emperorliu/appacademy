@@ -129,9 +129,11 @@ I built my own lite version of Rails.
 
 
 ## Week 6
+Javascript projects
 
-### Asteroids.js ( [code](https://github.com/vveleva/asteroids) )
-### Snake.js ( [code](https://github.com/vveleva/snake) )
+### Towers of Hanoi ( [code](https://github.com/vveleva/towers_of_hanoi) )
+### Snake ( [code](https://github.com/vveleva/snake) )
+### Asteroids ( [code](https://github.com/vveleva/asteroids) )
 
 
 ## Week 7
