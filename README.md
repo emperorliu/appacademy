@@ -127,6 +127,7 @@ I built my own lite version of Rails.
 - route request to the appropriate controller
 - send response back to the client
 
+### Rails Lite integrated with Active Record Lite ( [code](https://github.com/vveleva/rails_with_active_record_lite) )
 
 ## Week 6
 Javascript projects
