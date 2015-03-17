@@ -125,12 +125,11 @@ class Board
 
   def plant_bombs
     total_bombs = 0
+
     while total_bombs < @num_bombs
       rand_pos = Array.new(2) { rand(@grid_size) }
-
       tile = self[rand_pos]
       next if tile.bombed?
-
       tile.plant_bomb
       total_bombs += 1
     end
@@ -141,9 +140,9 @@ end
 
 class MinesweeperGame
   LAYOUTS = {
-    :small => { :grid_size => 9, :num_bombs => 10 },
-    :medium => { :grid_size => 16, :num_bombs => 40 },
-    :large => { :grid_size => 32, :num_bombs => 160 }
+    small:  { grid_size: 9,  num_bombs: 10 },
+    medium: { grid_size: 16, num_bombs: 40 },
+    large:  { grid_size: 32, num_bombs: 160 }
   }
 
   def initialize(size)
@@ -168,6 +167,7 @@ class MinesweeperGame
   end
 
   private
+
   def get_move
     action_type, row_s, col_s = gets.chomp.split(",")
 
