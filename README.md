@@ -33,6 +33,7 @@ This is the classic hangman game, where one player thinks of a word and the othe
 ### Word Chains ( [code](https://github.com/vveleva/algorithms/blob/master/word_ladder.rb) )
 Given two words of equal length as command-line arguments, the program builds a chain of words connecting the first to the second. Each word in the chain is in the dictionary and every step along the chain changes exactly one letter from the previous word.
 
+
 ## Week 2
 
 ### Minesweeper ( [code](https://github.com/vveleva/appacademy/tree/master/w2/w2d1) )
@@ -83,6 +84,7 @@ I built my own lite version of ActiveRecord.
     - `#primary_key`
   - `has_one_through`
 
+
 ## Week 4
 
 ### Blogger ( [code](https://github.com/vveleva/blogger) )
@@ -93,10 +95,8 @@ JumpStart blogger tutorial, which can be found at [JumpStart Lab](http://tutoria
 Contacts API is an application storing your email contacts.  Users can send requests to the API in order to create and share contacts, as well as retrieve their stored contact information.
 - Tables: `users`, `contacts`, `contact_share`, `contact_group`, and `comments`
 
-
 ### 99 Cats ( [code](https://github.com/vveleva/appacademy/tree/master/w4/w4d2d3/ninetyninecats) )
 This project is a clone of the dress rental website 99dresses. In other words: it is an airbnb for renting cats.
-
 
 ### Music App ( [code](https://github.com/vveleva/MusicApp) | [demo](http://musicapp.vveleva.com/) )
 **email:** user@example.com
@@ -107,6 +107,7 @@ A simplified version of a rdio-like app for browsing music. It is an inventory s
 ### Reddit App ( [code](https://github.com/vveleva/RedditApp) | [demo](http://redditapp.vveleva.com/) )
 
 If you don't know what the Reddit is, then you are probably someone with a life. [Here are some cats.](http://www.reddit.com/r/cats)
+
 
 ## Week 5
 
@@ -126,9 +127,12 @@ I built my own lite version of Rails.
 - route request to the appropriate controller
 - send response back to the client
 
+
 ## Week 6
 
 ### Asteroids.js ( [code](https://github.com/vveleva/asteroids) )
+### Snake.js ( [code](https://github.com/vveleva/snake) )
+
 
 ## Week 7
 
@@ -136,7 +140,6 @@ I built my own lite version of Rails.
 
 ### TrelloClone ( [code](https://github.com/vveleva/TrelloClone) )
 
-### Asteroids
 
 ## Final Project ( [code](https://github.com/vveleva/WaiterUp) | [live](waiterup.com) )
 
