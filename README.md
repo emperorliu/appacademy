@@ -1,6 +1,6 @@
 ## Prep Work for App Academy
 
-### Twitter Clone ( [code](https://github.com/vveleva/sample_app) ) ( [demo](fvbkireh.herokuapp.com) )
+### Twitter Clone ( [code](https://github.com/vveleva/sample_app) | [demo](fvbkireh.herokuapp.com) )
 This is the sample application for the
 [*Ruby on Rails Tutorial:
 Learn Web Development with Rails*](http://www.railstutorial.org/)
@@ -98,19 +98,19 @@ Contacts API is an application storing your email contacts.  Users can send requ
 This project is a clone of the dress rental website 99dresses. In other words: it is an airbnb for renting cats.
 
 
-### Music App ( [code](https://github.com/vveleva/MusicApp) ) ( [demo](http://musicapp.vveleva.com/) )
+### Music App ( [code](https://github.com/vveleva/MusicApp) | [demo](http://musicapp.vveleva.com/) )
 **email:** user@example.com
 **password:** awesome
 
 A simplified version of a rdio-like app for browsing music. It is an inventory system for record labels. This app lets users track their Bands, Albums and Tracks.
 
-### Reddit App ( [code](https://github.com/vveleva/RedditApp) ) ( [demo](http://redditapp.vveleva.com/) )
+### Reddit App ( [code](https://github.com/vveleva/RedditApp) | [demo](http://redditapp.vveleva.com/) )
 
 If you don't know what the Reddit is, then you are probably someone with a life. [Here are some cats.](http://www.reddit.com/r/cats)
 
 ## Week 5
 
-### Goal Setter App ( [code](https://github.com/vveleva/GoalSetterApp) ) ( [demo](http://goalsetterv.herokuapp.com/) )
+### Goal Setter App ( [code](https://github.com/vveleva/GoalSetterApp) | [demo](http://goalsetterv.herokuapp.com/) )
 
 This project's main focus was on improving my skills in:
 - writing integration tests using `Capybara` and `RSpec`
@@ -128,6 +128,7 @@ I built my own lite version of Rails.
 
 ## Week 6
 
+### Asteroids.js ( [code](https://github.com/vveleva/asteroids) )
 
 ## Week 7
 
@@ -137,7 +138,7 @@ I built my own lite version of Rails.
 
 ### Asteroids
 
-## Final Project ( [code](https://github.com/vveleva/WaiterUp) ) ( [demo](waiterup.com) )
+## Final Project ( [code](https://github.com/vveleva/WaiterUp) | [live](waiterup.com) )
 
 [waiterup.com](waiterup.com)
 
