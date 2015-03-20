@@ -36,11 +36,6 @@ TowersOfHanoi.prototype.move = function (startTowerIdx, endTowerIdx) {
   }
 };
 
-TowersOfHanoi.prototype.print = function () {
-  console.log(JSON.stringify(this.stacks));
-  return;
-};
-
 TowersOfHanoi.prototype.promptMove = function (callback) {
   reader.question("Move from: ", function(from) {
     reader.question("Move to: ", function(to) {
@@ -50,7 +45,9 @@ TowersOfHanoi.prototype.promptMove = function (callback) {
 };
 
 TowersOfHanoi.prototype.run = function (callback) {
-  this.print();
+  // display stacks
+  console.log(JSON.stringify(this.stacks));
+
   this.promptMove(function(from, to) {
     this.move(from, to);
     this.isWon() ? callback() : this.run(callback);
