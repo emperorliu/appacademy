@@ -36,7 +36,7 @@ TowersOfHanoi.prototype.move = function (startTowerIdx, endTowerIdx) {
     this.stacks[endTowerIdx].push(last(this.stacks[startTowerIdx]))
     this.stacks[startTowerIdx].splice(this.stacks[startTowerIdx].length - 1)
   } else {
-    console.log("Illigal move, noooooooob!");
+    console.log("Illigal move!");
   }
 };
 
@@ -48,7 +48,7 @@ TowersOfHanoi.prototype.print = function () {
 TowersOfHanoi.prototype.promptMove = function (callback) {
   reader.question("Move from: ", function(from) {
     reader.question("Move to: ", function(to) {
-      return callback(from, to);
+      return callback(from - 1, to - 1);
     });
   });
 };
@@ -57,9 +57,7 @@ TowersOfHanoi.prototype.run = function (callback) {
   this.print();
   var that = this;
   this.promptMove(function(from, to) {
-
     that.move(from, to);
-
     if (that.isWon()) {
 
       callback();
