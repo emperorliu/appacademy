@@ -6,9 +6,9 @@ Function.prototype.myBind = function (context) {
   }
 };
 
-var rr = {name: "Rowdy Ronda"};
+var rr = { name: "Rowdy Ronda" };
 
-function printHi(){
+function printHi() {
   console.log("Hi, Im " + this.name + ", lol")
 }
 
