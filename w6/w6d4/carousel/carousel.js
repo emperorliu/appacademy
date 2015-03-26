@@ -34,8 +34,6 @@ $.Carousel.prototype.slideRight = function (items) {
   setTimeout((function(){
     $prevImg.addClass("right");
     $nextImg.removeClass("left");
-    //the right gives it an initial position, by removing it immediately,
-    // we call the "active" class's transition attribute
   }), 0);
 };
 
