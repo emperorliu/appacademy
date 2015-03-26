@@ -26,13 +26,9 @@ div.items {
   border: 2px solid #ccc;
 }
 
-div.items img:not(.active) {
-  display: none;
-}
+div.items img:not(.active) { display: none; }
 
-.items .active.left {
-  left: -100%;
-}
+.items .active.left { left: -100%; }
 
 .items .active {
   position: absolute;
@@ -41,9 +37,7 @@ div.items img:not(.active) {
   transition: left 0.5s linear;
 }
 
-div.items .active.right {
-  left: 100%;
-}
+div.items .active.right { left: 100%; }
 
 a.slide-left { float: right; }
 a.slide-right { float: left; }
@@ -59,10 +53,6 @@ a.slide-right { float: left; }
   box-shadow: 0 2px 0 #038;
 }
 
-.carousel a:hover {
-  background-color: #25a;
-}
+.carousel a:hover { background-color: #25a; }
 
-.carousel a:active {
-  box-shadow: none;
-}
+.carousel a:active { box-shadow: none; }

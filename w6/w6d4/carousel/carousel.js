@@ -12,44 +12,50 @@ $.Carousel.prototype.clickLink = function (event) {
     var $activeLink = $(event.currentTarget);
     var $items = this.$el.find('img');
     if ($activeLink.attr('class') === "slide-right") {
-      var $prevImg = $items.eq(this.activeIdx);
-      this.activeIdx = (this.totalImgs + (this.activeIdx - 1)) % this.totalImgs;
-      var $nextImg = $items.eq(this.activeIdx);
-
-      $nextImg.addClass("active left");
-
-      $prevImg.one("transitionend", function(){
-        $prevImg.removeClass("active right");
-        this.trans = false;
-      }.bind(this));
-
-      setTimeout((function(){
-        $prevImg.addClass("right");
-        $nextImg.removeClass("left");
-        //the right gives it an initial position, by removing it immediately,
-        // we call the "active" class's transition attribute
-      }), 0);
-
+      this.slideRight($items);
     } else if ($activeLink.attr('class') === "slide-left") {
-      var $prevImg = $items.eq(this.activeIdx);
-      this.activeIdx = (this.activeIdx + 1) % this.totalImgs;
-      var $nextImg = $items.eq(this.activeIdx);
-
-      $nextImg.addClass("active right");
-
-      $prevImg.one("transitionend", function(){
-        $prevImg.removeClass("active left");
-        this.trans = false;
-      }.bind(this));
-
-      setTimeout((function(){
-        $prevImg.addClass("left");
-        $nextImg.removeClass("right");
-      }), 0);
+      this.slideLeft($items);
     }
   }
 }
 
+$.Carousel.prototype.slideRight = function (items) {
+  var $prevImg = items.eq(this.activeIdx);
+  this.activeIdx = (this.totalImgs + (this.activeIdx - 1)) % this.totalImgs;
+  var $nextImg = items.eq(this.activeIdx);
+
+  $nextImg.addClass("active left");
+
+  $prevImg.one("transitionend", function(){
+    $prevImg.removeClass("active right");
+    this.trans = false;
+  }.bind(this));
+
+  setTimeout((function(){
+    $prevImg.addClass("right");
+    $nextImg.removeClass("left");
+    //the right gives it an initial position, by removing it immediately,
+    // we call the "active" class's transition attribute
+  }), 0);
+};
+
+$.Carousel.prototype.slideLeft = function (items) {
+  var $prevImg = items.eq(this.activeIdx);
+  this.activeIdx = (this.activeIdx + 1) % this.totalImgs;
+  var $nextImg = items.eq(this.activeIdx);
+
+  $nextImg.addClass("active right");
+
+  $prevImg.one("transitionend", function(){
+    $prevImg.removeClass("active left");
+    this.trans = false;
+  }.bind(this));
+
+  setTimeout((function(){
+    $prevImg.addClass("left");
+    $nextImg.removeClass("right");
+  }), 0);
+};
 
 $.fn.carousel = function () {
   return this.each(function () {
