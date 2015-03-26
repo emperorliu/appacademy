@@ -6,8 +6,8 @@ $.Carousel = function (el) {
   this.trans = false;
 };
 
-$.Carousel.prototype.clickLink = function (event){
-  if(!this.trans){
+$.Carousel.prototype.clickLink = function (event) {
+  if (!this.trans) {
     this.trans = true;
     var $activeLink = $(event.currentTarget);
     var $items = this.$el.find('img');
@@ -47,10 +47,8 @@ $.Carousel.prototype.clickLink = function (event){
         $nextImg.removeClass("right");
       }), 0);
     }
-
   }
 }
-
 
 
 $.fn.carousel = function () {
