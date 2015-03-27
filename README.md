@@ -135,7 +135,11 @@ Javascript projects
 ### Towers of Hanoi ( [code](https://github.com/vveleva/towers_of_hanoi) )
 ### Snake ( [code](https://github.com/vveleva/snake) )
 ### Asteroids ( [code](https://github.com/vveleva/asteroids) )
-
+### AjaxTwitter ( [code](https://github.com/vveleva/AjaxTwitter) )
+The main purpose of this project was to write jQuery plugins. The code includes
+- `FollowToggle`: a jQuery plugin that turns a button into a toggle that follows/unfollows a user.
+- `UsersSearch`: a jQuery plugin that creates real-time user search. On every keypress, as the user types in a username, the page shows the matching users for the current input.
+- `TweetCompose`: a jQuery plugin that graphs the new tweet form and installs itself. It also allows us to tag multiple users in a tweet.
 
 ## Week 7
 
