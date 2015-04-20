@@ -76,3 +76,7 @@ class TowersOfHanoi
   end
 
 end
+
+
+game = TowersOfHanoi.new
+game.play
