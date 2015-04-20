@@ -1,5 +1,3 @@
-require 'pry'
-
 class MyHashSet
 
   def initialize
@@ -44,6 +42,7 @@ class MyHashSet
     end
     new_set = MyHashSet.new
     intersection.each { |i| new_set.insert(i) }
+
     new_set
   end
 
@@ -51,9 +50,8 @@ class MyHashSet
     intersection = intersect(set2)
     new_set = @store.dup
     intersection.to_a.each { |i| new_set.delete(i) }
+
     new_set
   end
 
 end
-
-binding.pry

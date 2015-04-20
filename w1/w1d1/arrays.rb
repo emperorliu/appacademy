@@ -3,14 +3,14 @@ class Array
   def my_uniq
     new_arr = []
     self.each { |i| new_arr << i unless new_arr.include?(i) }
+
     new_arr
   end
 
   def two_sum
-    len = length
     result = []
-    (0...len - 1).each do |i|
-      (i + 1...len).each do |j|
+    (0...length - 1).each do |i|
+      (i + 1...length).each do |j|
         result << [i, j] if self[i] + self[j] == 0
       end
     end
@@ -22,8 +22,7 @@ end
 
 def my_transpose(matrix)
   result = []
-  len = matrix[0].length
-  (0...len).each do |i|
+  (0...matrix[0].length).each do |i|
     col = []
     matrix.each { |row| col << row[i] }
     result << col
@@ -34,10 +33,9 @@ end
 
 
 def stock_picker(arr)
-  len = arr.length
   profit = [0, 0]
-  (0...len - 1).each do |i|
-    (i + 1...len).each do |j|
+  (0...arr.length - 1).each do |i|
+    (i + 1...arr.length).each do |j|
       profit = [i, j] if arr[j] - arr[i] > arr[profit[1]] - arr[profit[0]]
     end
   end
