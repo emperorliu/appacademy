@@ -4,8 +4,8 @@ class TowersOfHanoi
 
   attr_reader :towers, :complete_tower
 
-  def initialize
-    @complete_tower = (1..5).to_a.reverse
+  def initialize(height = 3)
+    @complete_tower = (1..height).to_a.reverse
     @towers = [complete_tower.dup, [], []]
   end
 
@@ -78,5 +78,5 @@ class TowersOfHanoi
 end
 
 
-game = TowersOfHanoi.new
+game = TowersOfHanoi.new(5)
 game.play
