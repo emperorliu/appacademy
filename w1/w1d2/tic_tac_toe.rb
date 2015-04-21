@@ -36,7 +36,7 @@ end
 
 
 class HumanPlayer
-  attr_accessor :name
+  attr_reader :name
 
   def initialize(name)
     @name = name
@@ -48,10 +48,10 @@ class HumanPlayer
 end
 
 class ComputerPlayer
-  attr_accessor :name
+  attr_reader :name
 
   def initialize
-    @name = "#{rand(1..100)}-computer"
+    @name = "#{rand(10..100)}-c0Mpv73r"
   end
 
   def move
@@ -61,7 +61,6 @@ end
 
 
 class Board
-
   attr_reader :board, :mark
   attr_accessor :winner
 
