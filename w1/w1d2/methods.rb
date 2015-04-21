@@ -13,6 +13,7 @@ end
 def rps(str)
   rps_choices = ["rock", "paper", "scissors"]
   comp_choice = rps_choices.sample
+
   "#{comp_choice.capitalize}, #{outcome(str, comp_choice)}"
 end
 
@@ -21,5 +22,6 @@ def remix(arr)
   alcohols = arr.map(&:first)
   mixers = arr.map(&:last)
   mixers.shuffle! while arr & alcohols.zip(mixers) != []
+
   alcohols.zip(mixers)
 end

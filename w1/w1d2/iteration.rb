@@ -12,6 +12,7 @@ def bubble_sort(arr)
       i += 1
     end
   end
+
   arr
 end
 
@@ -19,6 +20,7 @@ def substrings(str)
   letters = str.split('')
   strings = []
   (1..letters.length).each { |i| strings += letters.each_cons(i).to_a }
+
   strings.map(&:join)
 end
 
