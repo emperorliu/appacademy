@@ -3,18 +3,18 @@ class Code
 
   attr_reader :pegs
 
-  def initialize(@pegs)
+  def initialize(pegs)
     @pegs = pegs
   end
 
   def self.random
-    pegs = (1..4).map { CODES.sample }
-    Code.new(pegs)
+    codes = (1..4).map { CODES.sample }
+    Code.new(codes)
   end
 
   def self.parse(string)
-    pegs = string.upcase.split('')
-    Code.new(pegs)
+    codes = string.upcase.split('')
+    Code.new(codes)
   end
 
   def exact_matches(other_code)
@@ -42,24 +42,27 @@ class Game
 
   def initialize
     @turns = 0
-    @secret_code = Code.new
-    @guess = []
+    @secret_code = Code.random
+    @guess = nil
   end
 
   def play
+    puts secret_code.pegs.join('')
     until over?
-      guess = get_guess
+      self.guess = get_guess
       self.turns += 1
-      exact = secret_code.exact_matches(guess)
-      near = secret_code.near_matches(guess)
+      exact = secret_code.exact_matches(guess.pegs)
+      near = secret_code.near_matches(guess.pegs)
       puts "Exact: #{exact}"
       puts "Near: #{near}"
       puts "You have #{10 - turns} left."
     end
+
+    puts "The secret code was #{secret_code.pegs.join('')}!"
   end
 
   def over?
-    if secret_code.exact_matches(guess) == 4
+    if guess && secret_code.exact_matches(guess.pegs) == 4
       puts "you win!"
       true
     elsif turns == 10
