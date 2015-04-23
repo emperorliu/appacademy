@@ -8,7 +8,7 @@ class Code
   end
 
   def self.random
-    CODES.sample(4)
+    (1..4).map { CODES.sample }
   end
 
   def self.parse(string)
@@ -34,27 +34,36 @@ class Code
 end
 
 class Game
-  attr_accessor :turns, :secret_code
+  attr_accessor :turns, :secret_code, :guess
 
   def initialize
     @turns = 0
     @secret_code = Code.new
+    @guess = []
   end
 
   def play
-    guess = []
-    until turns == 10 or secret_code.exact_matches(guess) == 4
+    until over?
       guess = get_guess
-      self.turns += 1
+      turns += 1
       exact = secret_code.exact_matches(guess)
       near = secret_code.near_matches(guess)
       puts "Exact: #{exact}"
       puts "Near: #{near}"
       puts "You have #{10 - turns} left."
     end
+  end
 
-    puts "you win!" if secret_code.exact_matches(guess) == 4
-    puts "you lose!" if turns == 10
+  def over?
+    if secret_code.exact_matches(guess) == 4
+      puts "you win!"
+      true
+    elsif turn == 10
+      puts "you lose!"
+      true
+    else
+      false
+    end
   end
 
   def get_guess
