@@ -1,33 +1,37 @@
 class Code
   CODES = %w(R G Y B O P)
 
-  attr_reader :secret_code
+  attr_reader :pegs
 
-  def initialize
-    @secret_code = self.class.random
+  def initialize(@pegs)
+    @pegs = pegs
   end
 
   def self.random
-    (1..4).map { CODES.sample }
+    pegs = (1..4).map { CODES.sample }
+    Code.new(pegs)
   end
 
   def self.parse(string)
-    string.upcase.split('')
+    pegs = string.upcase.split('')
+    Code.new(pegs)
   end
 
   def exact_matches(other_code)
     matches = 0
-    secret_code.each_index do |i|
-      matches += 1 if secret_code[i] == other_code[i]
+    pegs.each_index do |i|
+      matches += 1 if pegs[i] == other_code[i]
     end
+
     matches
   end
 
   def near_matches(other_code)
     matches = 0
     other_code.each do |color|
-      matches += 1 if secret_code.include?(color)
+      matches += 1 if pegs.include?(color)
     end
+
     matches - exact_matches(other_code)
   end
 
@@ -45,7 +49,7 @@ class Game
   def play
     until over?
       guess = get_guess
-      turns += 1
+      self.turns += 1
       exact = secret_code.exact_matches(guess)
       near = secret_code.near_matches(guess)
       puts "Exact: #{exact}"
@@ -58,7 +62,7 @@ class Game
     if secret_code.exact_matches(guess) == 4
       puts "you win!"
       true
-    elsif turn == 10
+    elsif turns == 10
       puts "you lose!"
       true
     else
@@ -68,15 +72,7 @@ class Game
 
   def get_guess
     print "Make a guess: "
-    guess = Code.parse(gets.chomp)
-    if guess.length != guess.uniq.length
-      raise "Please only use one of each color"
-    else
-      guess
-    end
-  rescue => e
-    puts e.message
-    retry
+    Code.parse(gets.chomp)
   end
 end
 
