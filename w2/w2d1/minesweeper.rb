@@ -15,11 +15,9 @@ class Minesweeper
     @num_mines = 10
     mine_locations = []
     num_mines.times do
-      x = rand(BOARD_SIZE)
-      y = rand(BOARD_SIZE)
+      x, y = rand(BOARD_SIZE), rand(BOARD_SIZE)
       while mine_locations.include?([x, y])
-        x = rand(BOARD_SIZE)
-        y = rand(BOARD_SIZE)
+        x, y = rand(BOARD_SIZE), rand(BOARD_SIZE)
       end
       mine_locations << [x,y]
     end
@@ -85,11 +83,11 @@ class Minesweeper
 
   def play
     load_game
-
     until ended?
       render_board
       get_user_input
     end
+
     render_board
   end
 
@@ -171,11 +169,10 @@ class Minesweeper
 end
 
 class Node
-
   attr_reader :position
   attr_accessor :flagged, :value, :visible
 
-  def initialize(position, game, value=0, flagged="_", visible=false)
+  def initialize(position, game, value = 0, flagged = "_", visible = false)
     @game = game
     @value, @position, @flagged = value, position, flagged
     @visible = visible
@@ -189,8 +186,7 @@ class Node
   end
 
   def avail_neighbors
-    avail_pos = get_neighbors.select do |node|
-      i, j = node
+    avail_pos = get_neighbors.select do |(i, j)|
       i >= 0 && i < BOARD_SIZE && j >= 0 && j < BOARD_SIZE
     end
     avail_pos.map { |i, j| @game.board[i][j] }

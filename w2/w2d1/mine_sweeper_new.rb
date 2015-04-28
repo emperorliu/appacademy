@@ -1,18 +1,15 @@
+#!/usr/bin/env ruby
+
 require 'yaml'
 
-
 class Tile
-  DELTAS = [-1, 0, 1].repeated_permutation(2).to_a - [[0, 0]]
+  DELTAS = [-1, 0, 1].permutation(2).to_a
 
   attr_reader :pos
 
   def initialize(board, pos)
     @board, @pos = board, pos
     @bombed, @explored, @flagged = false, false, false
-  end
-
-  def bombed?
-    @bombed
   end
 
   def explored?
@@ -23,31 +20,49 @@ class Tile
     @flagged
   end
 
-  def adjacent_bomb_count
-    neighbors.select(&:bombed?).count
-  end
-
-  def neighbors
-    x, y = pos
-    adjacent_pos = DELTAS.map { |i, j| [x + i, y + j] }
-    adjacent_pos.select! do |i, j|
-      i >= 0 && i < @board.grid_size && j >= 0 && j < @board.grid_size
-    end
-
-    adjacent_pos.map { |pos| @board[pos] }
+  def bombed?
+    @bombed
   end
 
   def plant_bomb
     @bombed = true
   end
 
+  def adjacent_bomb_count
+    neighbors.select(&:bombed?).count
+  end
+
+  def explore
+    return self if flagged? || explored?
+
+    @explored = true
+    if !bombed? && adjacent_bomb_count == 0
+      neighbors.each { |adj_tile| adj_tile.explore }
+    end
+
+    self
+  end
+
+  def neighbors
+    x, y = pos
+    adjacent_coords = DELTAS.map do |(dx, dy)|
+      [x + dx, y + dy]
+    end.select do |row, col|
+      [row, col].all? do |coord|
+        coord.between?(0, @board.grid_size - 1)
+      end
+    end
+
+    adjacent_coords.map { |pos| @board[pos] }
+  end
+
   def render
     if flagged?
       "F"
     elsif explored?
-      adjacent_bomb_count == 0 ? "_  " : adjacent_bomb_count.to_s + "  "
+      adjacent_bomb_count == 0 ? " " : adjacent_bomb_count.to_s
     else
-      "*  "
+      "*"
     end
   end
 
@@ -57,28 +72,14 @@ class Tile
     elsif bombed?
       explored? ? "X" : "B"
     else
-      adjacent_bomb_count == 0 ? "_" : adjacent_bomb_count.to_s
+      adjacent_bomb_count == 0 ? " " : adjacent_bomb_count.to_s
     end
   end
 
   def toggle_flag
-    return if @explored
-
-    @flagged = !@flagged
-  end
-
-  def explore
-    return self if flagged? || explored?
-
-    @explored = true
-    if !bombed? && adjacent_bomb_count == 0
-      neighbors.each { |tile| tile.explore }
-    end
-
-    self
+    @flagged = !@flagged unless @explored
   end
 end
-
 
 class Board
   attr_reader :grid_size, :num_bombs
@@ -90,8 +91,8 @@ class Board
   end
 
   def [](pos)
-    x, y = pos
-    @grid[x][y]
+    row, col = pos
+    @grid[row][col]
   end
 
   def lost?
@@ -99,11 +100,14 @@ class Board
   end
 
   def render(reveal = false)
-    @grid.map do |row|
-      row.map do |tile|
+    puts "   | " + (0..9 - 1).to_a.join(" ") + " |   "
+    puts "---+-------------------+---"
+    @grid.map.with_index do |row, i|
+      " #{i} | " + row.map do |tile|
         reveal ? tile.reveal : tile.render
-      end.join("")
-    end.join("\n")
+      end.join(" ") + " | #{i}"
+    end.join("\n") + "\n---+-------------------+---" +
+    "\n   | " + (0..9 - 1).to_a.join(" ")  + " |   "
   end
 
   def reveal
@@ -115,33 +119,36 @@ class Board
   end
 
   private
-  def generate_board
-    @grid = Array.new(@grid_size) do |row|
-      Array.new(@grid_size) { |col| Tile.new(self, [row, col]) }
+
+    def generate_board
+      @grid = Array.new(@grid_size) do |row|
+        Array.new(@grid_size) { |col| Tile.new(self, [row, col]) }
+      end
+
+      plant_bombs
     end
 
-    plant_bombs
-  end
+    def plant_bombs
+      total_bombs = 0
+      while total_bombs < @num_bombs
+        rand_pos = Array.new(2) { rand(@grid_size) }
 
-  def plant_bombs
-    total_bombs = 0
+        tile = self[rand_pos]
+        next if tile.bombed?
 
-    while total_bombs < @num_bombs
-      rand_pos = Array.new(2) { rand(@grid_size) }
-      tile = self[rand_pos]
-      next if tile.bombed?
-      tile.plant_bomb
-      total_bombs += 1
+        tile.plant_bomb
+        total_bombs += 1
+      end
+
+      nil
     end
-
-    nil
-  end
+  # private ends
 end
 
 class MinesweeperGame
   LAYOUTS = {
-    small:  { grid_size: 9,  num_bombs: 10 },
-    medium: { grid_size: 16, num_bombs: 40 },
+    small:  { grid_size: 9,  num_bombs: 10  },
+    medium: { grid_size: 16, num_bombs: 40  },
     large:  { grid_size: 32, num_bombs: 160 }
   }
 
@@ -153,7 +160,6 @@ class MinesweeperGame
   def play
     until @board.won? || @board.lost?
       puts @board.render
-
       action, pos = get_move
       perform_move(action, pos)
     end
@@ -161,39 +167,43 @@ class MinesweeperGame
     if @board.won?
       puts "You win!"
     elsif @board.lost?
-      puts "**Bomb hit!**"
+      puts "You hit a bomb!"
       puts @board.reveal
     end
   end
 
   private
 
-  def get_move
-    action_type, row_s, col_s = gets.chomp.split(",")
+    def get_move
+      action_type, row_s, col_s = gets.chomp.split(",")
 
-    [action_type, [row_s.to_i, col_s.to_i]]
-  end
-
-  def perform_move(action_type, pos)
-    tile = @board[pos]
-
-    case action_type
-    when "f"
-      tile.toggle_flag
-    when "e"
-      tile.explore
-    when "s"
-      save
+      [action_type, [row_s.to_i, col_s.to_i]]
     end
-  end
 
-  def save
-    puts "Enter filename to save at:"
-    filename = gets.chomp
+    def perform_move(action_type, pos)
+      tile = @board[pos]
 
-    File.write(filename, YAML.dump(self))
-  end
+      case action_type
+      when "f"
+        tile.toggle_flag
+      when "r"
+        tile.explore
+      when "s"
+        save
+      end
+    end
+
+    def save
+      print "Enter filename to save at:"
+      filename = gets.chomp
+
+      File.write(filename, YAML.dump(self))
+    end
+  # private ends
 end
 
+if $PROGRAM_NAME == __FILE__
 
-MinesweeperGame.new(:small).play
+  MinesweeperGame.new(:small).play if ARGV.count == 0
+  YAML.load_file(ARGV.shift).play  if ARGV.count == 1
+end
