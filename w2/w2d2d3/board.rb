@@ -51,9 +51,9 @@ class Board
 
   def color_tile(str, x, y)
     if (x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)
-      str.colorize(:background => :light_blue)
+      str.colorize(background: :light_blue)
     else
-      str.colorize(:background => :blue)
+      str.colorize(background: :blue)
     end
   end
 
