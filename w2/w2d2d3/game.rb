@@ -6,7 +6,6 @@ require_relative 'stalemate_error.rb'
 
 
 class Game
-
   attr_reader :board, :white_player, :black_player
 
   def initialize(white, black)

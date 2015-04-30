@@ -4,7 +4,7 @@ require_relative 'sliding_piece.rb'
 class Bishop < SlidingPiece
 
   attr_accessor :pos
-  attr_reader :board, :color, :symbol, :value
+  attr_reader   :board, :color, :symbol, :value
 
   def initialize(board, pos, color)
     super(board, pos, color)

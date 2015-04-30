@@ -1,5 +1,4 @@
 class Piece
-
   attr_accessor :pos
   attr_reader :board, :color, :symbol
 
@@ -14,22 +13,19 @@ class Piece
       new_board.move!(pos, destination)
       valid_moves << destination unless new_board.in_check?(color)
     end
+
     valid_moves
   end
 
   def inspect
-    {pos: pos, color: color}.inspect
+    { pos: pos, color: color }.inspect
   end
 
   def check_board_at(pos)
-    # p pos
-    if board[pos].nil?
-      :nil
-    elsif board[pos].color != color
-      :opponent
-    else
-      :ally
-    end
+    return :nil_tile if board[pos].nil?
+    return :opponent if board[pos].color != color
+
+    :ally
   end
 
   private

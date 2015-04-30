@@ -21,7 +21,7 @@ class SteppingPiece < Piece
     total_moves = move_dirs.map { |i, j| [x + i, y + j]}
     total_moves.reject! { |move| off_board?(move) }
     total_moves.select do |move|
-      check_board_at(move) == :nil || check_board_at(move) == :opponent
+      check_board_at(move) == :nil_tile || check_board_at(move) == :opponent
     end
   end
 

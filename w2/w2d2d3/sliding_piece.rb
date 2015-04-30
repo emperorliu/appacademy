@@ -2,8 +2,8 @@ require_relative 'piece.rb'
 
 
 class SlidingPiece < Piece
-  DIAGONALS = [[1, 1], [1, -1], [-1, 1], [-1, -1]]
-  ORTHOGONALS = [[0, 1], [1, 0], [-1, 0], [0, -1]]
+  DIAGONALS =   [[1, 1], [1, -1], [-1, 1], [-1, -1]]
+  ORTHOGONALS = [[0, 1], [1, 0],  [-1, 0], [0, -1]]
 
   attr_accessor :pos
   attr_reader :board, :color
@@ -31,7 +31,7 @@ class SlidingPiece < Piece
 
     until off_board?([x, y])
       case check_board_at([x, y])
-      when :nil
+      when :nil_tile
         total_moves << [x, y]
         x += i
         y += j

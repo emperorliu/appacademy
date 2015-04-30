@@ -12,7 +12,7 @@ require 'colorize'
 class Board
 
   attr_accessor :pieces_number
-  attr_reader :grid
+  attr_reader   :grid
 
   def initialize(empty = false)
     @grid = Array.new(8) { Array.new(8) }
@@ -28,25 +28,29 @@ class Board
 
     grid.each_with_index do |row, i|
       row_string = "#{i + 1} \u2551 ".colorize(row_col_color)
-      row.each_with_index do |tile, j|
-        if tile.nil?
-          row_string << color_tile("  ", i, j)
-        else
-          x, y = tile.pos
-          if tile.color == :black
-            el = color_tile(tile.symbol.black + " ", x, y)
-          else
-            el = color_tile(tile.symbol.light_white + " ", x, y)
-          end
-          row_string << el
-        end
-      end
-
+      row.each_with_index { |tile, j| row_string += render_row(tile, i, j) }
       puts row_string + " \u2551 #{i + 1}".colorize(row_col_color)
     end
+
     puts ("  \u255A" + "\u2550" * 18 + "\u255D").colorize(row_col_color)
     puts ("    " + ("a".."h").to_a.join(" ")).colorize(row_col_color)
-    puts
+  end
+
+  def render_row(tile, i, j)
+    row_string = ""
+    if tile.nil?
+      row_string << color_tile("  ", i, j)
+    else
+      x, y = tile.pos
+      if tile.color == :black
+        el = color_tile(tile.symbol.black + " ", x, y)
+      else
+        el = color_tile(tile.symbol.light_white + " ", x, y)
+      end
+      row_string << el
+    end
+
+    row_string
   end
 
   def color_tile(str, x, y)
@@ -150,13 +154,8 @@ class Board
       grid[7][6] = Knight.new(self, [7, 6], :black)
       grid[7][7] = Rook.new(self,   [7, 7], :black)
 
-      grid[1].each_index do |i|
-        grid[1][i] = Pawn.new(self, [1, i], :white)
-      end
-
-      grid[6].each_index do |i|
-        grid[6][i] = Pawn.new(self, [6, i], :black)
-      end
+      grid[1].each_index { |i| grid[1][i] = Pawn.new(self, [1, i], :white) }
+      grid[6].each_index { |i| grid[6][i] = Pawn.new(self, [6, i], :black) }
     end
 
     def other_color(color)
@@ -166,7 +165,7 @@ class Board
     def pawn_to_queen(color)
       pawns = find_piece(color, Pawn)
       pawns.each do |pawn|
-        if pawn.pos[0] == 0 || pawn.pos[0] == 7
+        if [0, 7].include?(pawn.pos.first)
           self[pawn.pos] = Queen.new(self, pawn.pos, color)
         end
       end
