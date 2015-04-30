@@ -18,7 +18,7 @@ class SlidingPiece < Piece
     move_dirs.each do |dir|
       i, j = dir
       x2, y2 = [x + i, y + j]
-      total_moves += rec_moves(x2, y2, i, j)
+      total_moves += rec_moves(x + i, y + j, i, j)
     end
 
     total_moves
@@ -27,16 +27,17 @@ class SlidingPiece < Piece
   private
 
   def rec_moves(x, y, i, j)
+    pos = [x, y]
     total_moves = []
 
-    until off_board?([x, y])
-      case check_board_at([x, y])
+    until off_board?(pos)
+      case check_board_at(pos)
       when :nil_tile
-        total_moves << [x, y]
+        total_moves << pos
         x += i
         y += j
       when :opponent
-        total_moves << [x, y]
+        total_moves << pos
         break
       when :ally
         break

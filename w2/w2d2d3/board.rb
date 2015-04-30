@@ -86,18 +86,18 @@ class Board
     begin
       raise NoMoveError.new "this is nil" if self[start].nil?
       unless self[start].valid_moves.include?(end_pos)
-        raise NoMoveError.new "you can't go there"
+        raise NoMoveError.new "can't go there"
       end
       raise NoMoveError.new "wrong color" if color != self[start].color
-      move!(start, end_pos)
+      make_move(start, end_pos)
       pawn_to_queen(color)
     end
   end
 
-  def move!(start, end_pos)
+  def make_move(start, end_pos)
     self[start].pos = end_pos
-    self[end_pos] = self[start]
-    self[start] = nil
+    self[end_pos]   = self[start]
+    self[start]     = nil
   end
 
   def checkmate?(color)
@@ -110,14 +110,14 @@ class Board
     true
   end
 
-  def [](position)
-    x, y = position
+  def [](pos)
+    x, y = pos
     grid[x][y]
   end
 
-  def []=(cur_pos, new_obj)
-    x, y = cur_pos
-    grid[x][y] = new_obj
+  def []=(pos, value)
+    x, y = pos
+    grid[x][y] = value
   end
 
   def dup

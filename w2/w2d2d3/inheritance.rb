@@ -1,10 +1,9 @@
 
 class Employee
-
   attr_reader :name, :title
   attr_accessor :salary, :boss
 
-  def initialize(name, title, salary, boss=nil)
+  def initialize(name, title, salary, boss = nil)
     @name, @title, @salary, @boss = name, title, salary, boss
   end
 
@@ -15,10 +14,9 @@ class Employee
 end
 
 class Manager < Employee
-
   attr_reader :employees
 
-  def initialize(name, title, salary, boss=nil)
+  def initialize(name, title, salary, boss = nil)
     super(name, title, salary, boss)
     @employees = []
   end
@@ -44,7 +42,7 @@ class Manager < Employee
 
 end
 
-ned = Manager.new("Ned", "Founder", 1000000)
-darren = Manager.new("Darren", "TA Manager", 78000)
+ned =    Manager.new("Ned",     "Founder", 1000000)
+darren = Manager.new("Darren",  "TA Manager", 78000)
 shawna = Employee.new("Shawna", "TA", 12000)
-david = Employee.new("David", "TA", 10000)
+david =  Employee.new("David",  "TA", 10000)

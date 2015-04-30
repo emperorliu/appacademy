@@ -10,7 +10,7 @@ class Piece
     valid_moves = []
     moves.each do |destination|
       new_board = board.dup
-      new_board.move!(pos, destination)
+      new_board.make_move(pos, destination)
       valid_moves << destination unless new_board.in_check?(color)
     end
 
@@ -30,9 +30,8 @@ class Piece
 
   private
 
-  def off_board?(pos)
-    x, y = pos
-    [x, y].min < 0 || [x, y].max > 7
-  end
+    def off_board?(pos)
+      pos.min < 0 || pos.max > 7
+    end
 
 end

@@ -1,3 +1,4 @@
+require 'byebug'
 
 class HumanPlayer
   LETTERS_TO_NUM = ("a".."h").to_a
@@ -17,11 +18,13 @@ class HumanPlayer
     y, x = arr[0].split("")
     arr[0] = [x.to_i - 1, LETTERS_TO_NUM.index(y)]
     arr[1] = arr[1].to_sym
+    debugger
     arr
   end
 
   # def valid_input?(str)
-  #   chrs = str.strip.split("")
+  #   debugger
+  #   chrs = str.strip.split(" ")
   #   if chrs.length != 6
   #     false
   #   elsif chrs[2] != ","

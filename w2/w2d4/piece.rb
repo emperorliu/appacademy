@@ -4,14 +4,13 @@ require 'byebug'
 require 'matrix'
 
 class Piece
-
   DIRECTIONS = { downleft:  Vector[1, -1],
                  downright: Vector[1, 1],
                  upleft:    Vector[-1, -1],
                  upright:   Vector[-1, 1] }
 
   attr_accessor :pos, :king
-  attr_reader :board, :color, :symbol
+  attr_reader   :board, :color, :symbol
 
   def initialize(board, pos, color)
     @board, @pos, @color = board, Vector.elements(pos), color
