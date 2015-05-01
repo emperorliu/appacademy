@@ -13,9 +13,13 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 ### Maze Solver ( [code](https://github.com/vveleva/appacademy/blob/master/w1/w1d3/maze_solver.rb) )
 A program that finds a route between two points in a maze.
 
-### Towers of Hanoi ( [code](https://github.com/vveleva/appacademy/blob/master/w1/w1d1/towers_of_hanoi.rb) )
+### Towers of Hanoi ( [code](https://github.com/vveleva/towers_of_hanoi) )
 
-![towers of hanoi](https://github.com/vveleva/appacademy/blob/master/images/towers_of_hanoi.png)
+![towers of hanoi](https://github.com/vveleva/towers_of_hanoi/blob/master/screenshots/cli_1.png)
+
+![towers of hanoi](https://github.com/vveleva/towers_of_hanoi/blob/master/screenshots/cli_2.png)
+
+![towers of hanoi](https://github.com/vveleva/towers_of_hanoi/blob/master/screenshots/cli_3.png)
 
 
 ### Tic Tac Toe  ( [code](https://github.com/vveleva/appacademy/blob/master/w1/w1d2/tic_tac_toe.rb) )
