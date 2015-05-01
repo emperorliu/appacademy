@@ -1,3 +1,0 @@
-class MultipleRoutesError < StandardError
-  
-end
