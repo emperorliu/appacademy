@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'colorize'
 require 'yaml'
 
 class Tile
@@ -68,9 +69,9 @@ class Tile
 
   def reveal
     if flagged?
-      bombed? ? "F" : "f"
+      bombed? ? "F" : ("f").colorize(:background => :blue)
     elsif bombed?
-      explored? ? "X" : "B"
+      explored? ? ("X").colorize(:red) : ("B").colorize(:blue)
     else
       adjacent_bomb_count == 0 ? " " : adjacent_bomb_count.to_s
     end

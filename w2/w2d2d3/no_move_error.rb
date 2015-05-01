@@ -1,2 +1,0 @@
-class NoMoveError < ArgumentError
-end

@@ -1,2 +1,0 @@
-class StalemateError < ArgumentError
-end
