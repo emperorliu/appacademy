@@ -11,42 +11,31 @@
 #
 
 class ShortenedUrl < ActiveRecord::Base
-    belongs_to(
-      :submitter,
+
+    validates :short_url, uniqueness: true
+    validates :long_url, :short_url, presence: true
+
+    belongs_to :submitter,
       class_name: "User",
       foreign_key: :submitter_id,
       primary_key: :id
-    )
 
-    has_many(
-      :visits,
+    has_many :visits,
       class_name: "Visit",
       foreign_key: :shortened_url_id,
       primary_key: :id
-    )
 
-    has_many(
-      :visitors,
+    has_many :visitors,
       -> { distinct },
       through: :visits,
       source: :user
-    )
 
-    has_many(
-      :taggings,
+    has_many :taggings,
       class_name: "Taggings",
       foreign_key: :shortened_url_id,
       primary_key: :id
-    )
 
-    has_many(
-      :tags,
-      through: :taggings,
-      source: :tag
-    )
-
-    validates :short_url, :uniqueness => true, :presence  => true
-    validates :long_url, :presence  => true
+    has_many :tags, through: :taggings, source: :tag
 
   def self.random_code
     unique = false
