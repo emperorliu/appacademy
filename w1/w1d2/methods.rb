@@ -25,3 +25,10 @@ def remix(arr)
 
   alcohols.zip(mixers)
 end
+
+# shorter implementation
+def remix(arr)
+  alcohols, mixers = arr.transpose
+  mixers.shuffle! while arr & alcohols.zip(mixers) != []
+  alcohols.zip(mixers)
+end
