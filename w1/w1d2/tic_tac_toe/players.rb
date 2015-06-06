@@ -15,8 +15,8 @@ class ComputerPlayer
   attr_reader :name
   attr_accessor :size
 
-  def initialize(size = 3)
-    @size = size
+  def initialize(options = {})
+    @size = options[:size] || 3
     @name = "#{rand(100...1000)}-c0Mpv73r"
   end
 

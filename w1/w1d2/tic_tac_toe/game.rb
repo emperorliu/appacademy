@@ -3,14 +3,16 @@ require_relative 'players'
 
 class Game
   attr_accessor :board
-  attr_accessor :player1, :player2, :marks
+  attr_reader :size, :player_x, :player_o, :marks
 
-  def initialize(size, player1, player2)
-    @board = Board.new(size)
-    @player1 = player1
-    @player2 = player2
-    player1.size = size if player1.class == ComputerPlayer
-    player2.size = size if player2.class == ComputerPlayer
+  def initialize(options)
+    @size = options[:size] || 3
+    @board = Board.new(size: size)
+    @player_x = options[:x]
+    @player_o = options[:o]
+    [player_x, player_o].each do |player|
+      player.size = @size if player.class == ComputerPlayer
+    end
     @marks = ['x', 'o']
     @won = nil
   end
@@ -18,7 +20,7 @@ class Game
   def play
     until won? || board.full?
       board.display
-      [player1, player2].each_with_index do |player, i|
+      [player_x, player_o].each_with_index do |player, i|
         move = play_turn(player)
         board[*move] = marks[i]
         @won = won?
@@ -30,7 +32,7 @@ class Game
     if won?.nil?
       puts "it's a tie :/"
     else
-      winner = ( @won == 'x' ? player1 : player2 )
+      winner = ( @won == 'x' ? player_x : player_o )
       puts "#{winner.name} won!"
     end
   end
@@ -65,9 +67,3 @@ class Game
     nil
   end
 end
-
-
-player1 = HumanPlayer.new("Human")
-player2 = ComputerPlayer.new
-game = Game.new(4, player1, player2)
-game.play
