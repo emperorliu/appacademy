@@ -5,10 +5,12 @@ class Game
   attr_accessor :board
   attr_accessor :player1, :player2, :marks
 
-  def initialize(player1, player2)
-    @board = Board.new
+  def initialize(size, player1, player2)
+    @board = Board.new(size)
     @player1 = player1
     @player2 = player2
+    player1.size = size if player1.class == ComputerPlayer
+    player2.size = size if player2.class == ComputerPlayer
     @marks = ['x', 'o']
     @won = nil
   end
@@ -79,7 +81,8 @@ class HumanPlayer
 end
 
 class ComputerPlayer
-  attr_reader :name, :size
+  attr_reader :name
+  attr_accessor :size
 
   def initialize(size = 3)
     @size = size
@@ -105,17 +108,17 @@ class Board
       "\u2551 " + row.map do |i|
         i.nil? ? " " : i.colorize(:yellow)
       end.join(" \u2551 ") + " \u2551"
-    end.join("\n\u2560" + "\u2550" * size + \
-              ("\u256C" + "\u2550" * size) * (size - 1) + "\u2563\n")
+    end.join("\n\u2560" + "\u2550" * 3 + \
+              ("\u256C" + "\u2550" * 3) * (size - 1) + "\u2563\n")
   end
 
   def display
     puts "\e[H\e[2J"
-    puts "\u2554" + "\u2550" * size + \
-        ("\u2566" + "\u2550" * size) * (size - 1) + "\u2557"
+    puts "\u2554" + "\u2550" * 3 + \
+        ("\u2566" + "\u2550" * 3) * (size - 1) + "\u2557"
     puts render
-    puts "\u255A" + "\u2550" * size + \
-        ("\u2569" + "\u2550" * size) * (size - 1) + "\u255D"
+    puts "\u255A" + "\u2550" * 3 + \
+        ("\u2569" + "\u2550" * 3) * (size - 1) + "\u255D"
   end
 
   def [](x, y)
@@ -141,5 +144,5 @@ end
 
 player1 = HumanPlayer.new("Human")
 player2 = ComputerPlayer.new
-game = Game.new(player1, player2)
+game = Game.new(4, player1, player2)
 game.play
