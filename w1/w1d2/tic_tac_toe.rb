@@ -1,36 +1,66 @@
 require 'colorize'
 
+
 class Game
+  attr_accessor :board
+  attr_accessor :player1, :player2, :marks
 
-  attr_accessor :board, :p1, :p2, :marks
-
-  def initialize(p1, p2)
+  def initialize(player1, player2)
     @board = Board.new
-    @p1 = p1
-    @p2 = p2
+    @player1 = player1
+    @player2 = player2
     @marks = ['x', 'o']
-    board.display
+    @won = nil
   end
 
   def play
-    until board.won?
-      [p1, p2].each_with_index do |player, i|
-        puts "Make a move." if player.class == HumanPlayer
-        player_move = player.move
-        until board.empty?(player_move)
-          p "Invalid move, try again." if player.class == HumanPlayer
-          player_move = player.move
-        end
-        board.place_mark(player_move, marks[i])
-        board.display
-        break if board.won?
+    until won? || board.full?
+      board.display
+      [player1, player2].each_with_index do |player, i|
+        move = play_turn(player)
+        board[*move] = marks[i]
+        @won = won?
+        break if board.full?
       end
     end
-    if board.winner == 'x'
-      puts "#{p1.name} won!"
+    board.display
+
+    if won?.nil?
+      puts "it's a tie :/"
     else
-      puts "#{p2.name} won!"
+      winner = ( @won == 'x' ? player1 : player2 )
+      puts "#{winner.name} won!"
     end
+  end
+
+  def play_turn(player)
+    pos = player.move
+    until board.empty_at?(pos)
+      p "Invalid move, try again." if player.class == HumanPlayer
+      pos = player.move
+    end
+
+    pos
+  end
+
+  def won?
+    board.grid.each do |row|
+      return "x" if row.all? { |x| x == "x" }
+      return "o" if row.all? { |x| x == "o" }
+    end
+
+    board.grid.transpose.each do |row|
+      return "x" if row.all? { |x| x == "x" }
+      return "o" if row.all? { |x| x == "o" }
+    end
+
+    return "x" if (0..2).all? { |i| board[i, i] == "x" }
+    return "o" if (0..2).all? { |i| board[i, i] == "o" }
+
+    return "x" if (0..2).all? { |i| board[i, 2 - i] == "x" }
+    return "o" if (0..2).all? { |i| board[i, 2 - i] == "o" }
+
+    nil
   end
 end
 
@@ -43,106 +73,73 @@ class HumanPlayer
   end
 
   def move
-    gets.chomp.split(' ').map(&:to_i)
+    puts "Make a move."
+    gets.chomp.split(', ').map(&:to_i)
   end
 end
 
 class ComputerPlayer
-  attr_reader :name
+  attr_reader :name, :size
 
-  def initialize
-    @name = "#{rand(10..100)}-c0Mpv73r"
+  def initialize(size = 3)
+    @size = size
+    @name = "#{rand(100...1000)}-c0Mpv73r"
   end
 
   def move
-    [rand(0..2), rand(0..2)]
+    [rand(0...size), rand(0...size)]
   end
 end
 
 
 class Board
-  attr_reader :board, :mark
-  attr_accessor :winner
+  attr_reader :grid, :size
 
-  def initialize
-    @board = Array.new(3) { Array.new(3) }
-    @winner = ""
+  def initialize(size = 3)
+    @size = size
+    @grid = Array.new(size) { Array.new(size) }
   end
 
   def render
-    board.map do |row|
+    grid.map do |row|
       "\u2551 " + row.map do |i|
         i.nil? ? " " : i.colorize(:yellow)
       end.join(" \u2551 ") + " \u2551"
-    end.join("\n\u2560" + "\u2550" * 3 + \
-               "\u256C" + "\u2550" * 3 + \
-               "\u256C" + "\u2550" * 3 + "\u2563\n")
+    end.join("\n\u2560" + "\u2550" * size + \
+              ("\u256C" + "\u2550" * size) * (size - 1) + "\u2563\n")
   end
 
   def display
     puts "\e[H\e[2J"
-    puts "\u2554" + "\u2550" * 3 + \
-         "\u2566" + "\u2550" * 3 + \
-         "\u2566" + "\u2550" * 3 + "\u2557"
+    puts "\u2554" + "\u2550" * size + \
+        ("\u2566" + "\u2550" * size) * (size - 1) + "\u2557"
     puts render
-    puts "\u255A" + "\u2550" * 3 + \
-         "\u2569" + "\u2550" * 3 + \
-         "\u2569" + "\u2550" * 3 + "\u255D"
+    puts "\u255A" + "\u2550" * size + \
+        ("\u2569" + "\u2550" * size) * (size - 1) + "\u255D"
   end
 
-  def won?
-    mark = ""
-    board.each_with_index do |row, i|
-      if row.all? { |x| x == 'x' }
-        self.winner = row[0]
-        return true
-      elsif row.all? { |x| x == 'o' }
-        self.winner = row[0]
-        return true
-      end
-    end
-    board.transpose.each_with_index do |row, i|
-      if row.all? { |x| x == 'x' }
-        self.winner = row[0]
-
-        return true
-      elsif row.all? { |x| x == 'o' }
-        self.winner = row[0]
-
-        return true
-      end
-    end
-    if board[0][0] && board[0][0] == board[1][1] &&
-                      board[1][1] == board[2][2]
-      self.winner = board[0][0]
-
-      true
-    elsif board[2][0] && board[2][0] == board[1][1] &&
-                         board[1][1] == board[0][2]
-      self.winner = board[2][0]
-
-      true
-    else
-      false
-    end
+  def [](x, y)
+    @grid[x][y]
   end
 
-  def empty?(pos)
-    x, y = pos
-    board[x][y].nil?
+  def []=(x, y, val)
+    @grid[x][y] = val
+  end
+
+  def full?
+    grid.flatten.compact.length == 9
+  end
+
+  def empty_at?(pos)
+    self[*pos].nil?
   end
 
   def place_mark(pos, mark)
-    if empty?(pos)
-      x, y = pos
-      board[x][y] = mark
-    else
-      "Not empty!"
-    end
+    self[*pos] = mark
   end
 end
 
-p1 = HumanPlayer.new("Human")
-p2 = ComputerPlayer.new
-game = Game.new(p1, p2)
+player1 = HumanPlayer.new("Human")
+player2 = ComputerPlayer.new
+game = Game.new(player1, player2)
 game.play
