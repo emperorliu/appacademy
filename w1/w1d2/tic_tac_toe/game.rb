@@ -26,13 +26,14 @@ class Game
 
 
   def play
+    board.display
     until won? || board.full?
-      board.display
       [player_x, player_o].each_with_index do |player, i|
         move = play_turn(player)
         board[*move] = player.mark
         @won = won?
-        break if board.full?
+        break if board.full? || @won
+        board.display
       end
     end
     board.display
