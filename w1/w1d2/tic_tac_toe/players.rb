@@ -1,8 +1,9 @@
 class HumanPlayer
-  attr_reader :name
+  attr_reader :name, :mark
 
-  def initialize(name)
-    @name = name
+  def initialize(options)
+    @name = options[:name]
+    @mark = options[:mark]
   end
 
   def move
@@ -12,12 +13,13 @@ class HumanPlayer
 end
 
 class ComputerPlayer
-  attr_reader :name
+  attr_reader :name, :mark
   attr_accessor :size
 
-  def initialize(options = {})
-    @size = options[:size] || 3
+  def initialize(options)
+    @size = options[:size]
     @name = "#{rand(100...1000)}-c0Mpv73r"
+    @mark = options[:mark]
   end
 
   def move

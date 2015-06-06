@@ -3,26 +3,34 @@ require_relative 'players'
 
 class Game
   attr_accessor :board
-  attr_reader :size, :player_x, :player_o, :marks
+  attr_reader :size, :player_x, :player_o
 
   def initialize(options)
     @size = options[:size] || 3
     @board = Board.new(size: size)
-    @player_x = options[:x]
-    @player_o = options[:o]
-    [player_x, player_o].each do |player|
-      player.size = @size if player.class == ComputerPlayer
-    end
-    @marks = ['x', 'o']
+    @player_x = setup_player(options[:x], 'x')
+    @player_o = setup_player(options[:o], 'o')
     @won = nil
   end
+
+  def setup_player(type, mark)
+    if type == :human
+      puts "what's your name, player `#{mark}`?"
+      player = HumanPlayer.new(name: gets.chomp, mark: mark)
+    else
+      player = ComputerPlayer.new(size: size, mark: mark)
+    end
+
+    player
+  end
+
 
   def play
     until won? || board.full?
       board.display
       [player_x, player_o].each_with_index do |player, i|
         move = play_turn(player)
-        board[*move] = marks[i]
+        board[*move] = player.mark
         @won = won?
         break if board.full?
       end
