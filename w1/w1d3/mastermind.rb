@@ -1,5 +1,9 @@
+require 'colorize'
+require 'byebug'
+
 class Code
-  CODES = %w(R G Y B O P)
+  CODES = %i(r g y b o p)
+  COLORS = { r: :red, g: :green, y: :yellow, b: :blue, o: :orange, p: :purple }
 
   attr_reader :pegs
 
@@ -13,7 +17,7 @@ class Code
   end
 
   def self.parse(string)
-    codes = string.upcase.split('')
+    codes = string.downcase.chars.map(&:to_sym)
     Code.new(codes)
   end
 
@@ -36,6 +40,9 @@ class Code
     matches - exact_matches(other_code)
   end
 
+  def display
+    pegs.map { |peg| COLORS[peg] }
+  end
 end
 
 class Game
