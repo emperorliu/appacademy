@@ -4,6 +4,9 @@ require 'byebug'
 class Code
   CODES = %i(r g y b o p)
   COLORS = { r: :red, g: :green, y: :yellow, b: :blue, o: :orange, p: :purple }
+  CLI_COLORS = {
+    r: :red, g: :green, y: :light_yellow, b: :cyan, o: :yellow, p: :blue
+  }
 
   attr_reader :pegs
 
@@ -41,7 +44,7 @@ class Code
   end
 
   def display
-    pegs.map { |peg| COLORS[peg] }
+    pegs.map { |i| COLORS[i].to_s.colorize(CLI_COLORS[i]) }.join(" ")
   end
 end
 
@@ -49,31 +52,32 @@ class Game
   attr_accessor :turns, :secret_code, :guess
 
   def initialize
-    @turns = 0
+    @turns = 10
     @secret_code = Code.random
     @guess = nil
   end
 
   def play
-    puts secret_code.pegs.join('')
+    puts secret_code.display
     until over?
-      self.guess = get_guess
-      self.turns += 1
+      @guess = get_guess
+      @turns -= 1
       exact = secret_code.exact_matches(guess)
       near = secret_code.near_matches(guess)
+      puts "You guessed #{guess.display}"
       puts "Exact: #{exact}"
       puts "Near: #{near}"
-      puts "You have #{10 - turns} left."
+      puts "You have #{turns} left."
     end
 
-    puts "\nThe secret code was #{secret_code.pegs.join('')}!"
+    puts "\nThe secret code was #{secret_code.display}!"
   end
 
   def over?
     if guess && secret_code.exact_matches(guess) == 4
       puts "\nYou win!"
       true
-    elsif turns == 10
+    elsif turns == 0
       puts "\nYou lose!"
       true
     else
