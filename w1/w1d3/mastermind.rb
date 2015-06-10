@@ -3,7 +3,18 @@ require 'byebug'
 
 class Code
   CODES = %i(r g y b o p)
-  COLORS = { r: :red, g: :green, y: :yellow, b: :blue, o: :orange, p: :purple }
+  # actual words
+  # COLORS = { r: :red, g: :green, y: :yellow, b: :blue, o: :orange, p: :purple }
+
+  # squares with different shading
+  # COLORS = {
+  #   r: "\u25A4", g: "\u25A5", y: "\u25A6", b: "\u25A7", o: "\u25A8", p: "\u25A9"
+  # }
+
+  # different shapes
+  COLORS = {
+    r: "\u2688", g: "\u2726", y: "\u2736", b: "\u2737", o: "\u272D", p: "\u2739"
+  }
   CLI_COLORS = {
     r: :red, g: :green, y: :light_yellow, b: :cyan, o: :yellow, p: :blue
   }
@@ -44,7 +55,9 @@ class Code
   end
 
   def display
-    pegs.map { |i| COLORS[i].to_s.colorize(CLI_COLORS[i]) }.join(" ")
+    pegs.map { |i| i.to_s.colorize(CLI_COLORS[i]) }.join(" ")
+    # pegs.map { |i| COLORS[i].to_s.colorize(CLI_COLORS[i]) }.join(" ")
+    # pegs.map { |i| "\u25A8".colorize(CLI_COLORS[i]) }.join(" ")
   end
 end
 
@@ -64,13 +77,13 @@ class Game
       @turns -= 1
       exact = secret_code.exact_matches(guess)
       near = secret_code.near_matches(guess)
-      puts "You guessed #{guess.display}"
+      puts "Your guess #{guess.display}"
       puts "Exact: #{exact}"
       puts "Near: #{near}"
       puts "You have #{turns} left."
     end
 
-    puts "\nThe secret code was #{secret_code.display}!"
+    puts "\nThe secret code was #{secret_code.display}"
   end
 
   def over?
