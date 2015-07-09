@@ -12,7 +12,7 @@ class TagTopic < ActiveRecord::Base
 
   has_many(
     :taggings,
-    class_name: "Taggings",
+    class_name: "Tagging",
     foreign_key: :tag_id,
     primary_key: :id
   )
@@ -23,7 +23,13 @@ class TagTopic < ActiveRecord::Base
     source: :shortened_url
   )
 
+  has_many :visits, through: :shortened_urls, source: :visits
+
   def self.tags
     TagTopic.pluck(:name)
+  end
+
+  def self.popular(n)
+    TagTopic.joins(:visits).group("tag_topics.id").select("tag_topics.*").order("COUNT(DISTINCT visits.id) DESC").limit(n)
   end
 end
